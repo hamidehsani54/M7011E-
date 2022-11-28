@@ -1,3 +1,6 @@
+#username: hamid.allt2020@gmail.com
+#password: sandeep2022
+
 """
 Django settings for website project.
 
@@ -11,9 +14,16 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from .info import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+EMAIL_USE_TLS= EMAIL_USE_TLS
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT= EMAIL_PORT
 
 
 # Quick-start development settings - unsuitable for production
@@ -53,6 +63,11 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = 'website.urls'
+LOGIN_REDIRECT_URL='login'
+LOGOUT_REDORECT_URL ='login'
+
+EMAIL_BACKEND ='django.core.mai.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH =BASE_DIR / 'emails'
 
 TEMPLATES = [
     {

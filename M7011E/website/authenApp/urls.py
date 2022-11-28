@@ -2,12 +2,18 @@ from django.urls import path
 from authenApp import views
 
 
+
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
     path('SignupPage', views.SignupPage, name="SignupPage"),
     path('LoginPage',views.LoginPage, name="LoginPage"),
     path('ResetPasswordPage', views.ResetPasswordPage, name="ResetPasswordPage"),
-    path('SingOut', views.SingOut, name="SingOut"),
+    path('SignOut', views.SignOut, name="SignOut"),
+    
+
+    
+  
+    
     
 
     

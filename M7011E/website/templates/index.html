@@ -13,18 +13,10 @@
     <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
-    {%for message in messages%}
-    <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert"></div>
-    <strong>message: </strong>{{message}}
-    <button type ="button" class ="close" data-dismiss="alert"></button>
-    <span aria-hidden ="true">&time;</span>
-    
 
-        
-    {%if user.is_authenticated%}
-    <h3> Hello, {{first_name}}</h3>
-    <h4>Your are logged in<h4/>
     <!---Lion section starts here-->
+     
+
 
     <div class="lion">
         <nav>
@@ -34,10 +26,34 @@
                 <li><a href="#">Profile </a></li>
                 <li><a href="#">Contact </a></li>
                 <li><a href="#">About me </a></li>
-                <button type ="submit"><a href="SignupPage">SingUp</button></a>
-                <button type ="submit"><a href="LoginPage">Login</button></a>
-                <button type ="submit"><a href="SingOutPage">SingOut</button></a>
-               <button type ="submit"><a href="ResetPasswordPage">ResetPasswprdpage</button></a>
+
+
+
+                {%for message in messages%}
+                <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
+                <strong>Message: </strong>{{message}}
+                <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden ="true">&time;</span>
+                </button>
+                </div>
+                {% endfor %}
+                
+            
+                    
+                {%if user.is_authenticated%}
+                <h3> Hello, {{firstname}}</h3>
+                <h4>Your are logged in<h4/>
+                <button type="submit"><a href="SignOut">Signout</a></button>
+            
+                {%else%}
+                <button type="submit"><a href="SignupPage">SignUp</a></button>
+                <button type="submit"><a href="LoginPage">Login</a></button>
+                
+                {% endif %}
+            
+            
+                <script scr="" async defer></script>
+
               
             
             </ul>
@@ -46,13 +62,12 @@
         <div class="content">
         <h4>Hello, my name is </h4>
         <h1>Hamid Ehsani</h1>
-        <h3>Im a computer science student at LTU which is located in Sweden</h3>
-        <div class ="newslatter">
-            <form>
-                <input type ="email" name="email" id="mail" placeholder="Enter Your Email">
-                <input type ="sumbmit" name="submit" value="lets starts">
-            </form>
-        </div>
+        <h3>Im a computer science student at LTU which is located in Sweden,<br>
+             I have trained gym with combination of volleyball during many years<br> 
+             Would you like to train with me? 
+             <button type="submit"><a href="SignupPage">Yes</a></button>
+        </h3>
+ 
     <div>
 
     </div>

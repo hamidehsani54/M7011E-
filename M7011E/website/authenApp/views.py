@@ -41,11 +41,11 @@ def SignupPage(request):
             return redirect('LoginPage')
             
         #check if email already registred 
-        """
+        
         if User.objects.filter(email = email):
             messages.error(request, "Email already registred!")
             return redirect('LoginPage')
-    """
+
         #too long username     
         if len(username)>10:
             messages.error(request, "Username is too long")
@@ -99,12 +99,6 @@ def LoginPage(request):
             return redirect('HomePage')
       
     return render(request, "LoginPage.html")
-
-def ResetPasswordPage(request):
-
-      
-    return render(request, "ResetPasswordPage")
-    
    
     
 

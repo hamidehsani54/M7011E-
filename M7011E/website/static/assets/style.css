@@ -3,6 +3,7 @@
     margin: 0;
     font-family: 'Josefin Sans', sans-serif;
     box-sizing: border-box;
+    color: white;
 }
 .lion{
     width: 100%;
@@ -16,8 +17,8 @@ nav{
     align-items: center;
     justify-content: space-between;
     padding-top: 45px;
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .logo{
@@ -70,4 +71,36 @@ nav ul li a:hover{
     top: 40%;
     left: 8%;
     transform: translateY(-50%);
+}
+button[type=submit]{
+  background-color: #f9004d;
+  color: white;
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 5pt;
+  border-radius: 4pt;
+  margin: 0px 10px 5px 0px;
+  margin-left: 0pt;
+  cursor: pointer;
+}
+button[type=submit]:hover{
+  background-color: #f9007d;
+}
+input{
+  border: 1px solid #ccc;
+  display: inline-block;
+  border-radius: 2pt;
+  padding: 5pt;
+  margin: 0px 10px 5px 0px;
+  background-color: white;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+#signupLogin{
+  color: white;
+  font-weight: bold;
+  margin: 0px 10px 10px 0px;
 }

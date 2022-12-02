@@ -7,12 +7,12 @@
     <meta name="csrf_token" content="{{ csrf_token }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
- 
+
 
     <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
-    
+
 
 
 
@@ -24,10 +24,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY PERSONAL PAGE</title>
- 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/assets/style.css">
 </head>
@@ -43,7 +43,7 @@
     </div>
     {% endfor %}
     <!---Lion section starts here-->
-     
+
 
 
     <div class="lion">
@@ -54,41 +54,49 @@
                 <li><a href="#">Profile </a></li>
                 <li><a href="#">Contact </a></li>
                 <li><a href="#">About me </a></li>
-    
 
 
 
 
 
-                
 
-              
-            
+
+
+
+
             </ul>
-      
+
         <a href="#" class="btn">Subscribe Me </a>
         <div class="content">
+        <!--
         <h4>Hello, my name is </h4>
         <h1>Hamid Ehsani</h1>
         <h3>Im a computer science student at LTU which is located in Sweden</h3>
+        -->
+        <h1 id="signupLogin">Login</h1>
         <div class ="newslatter">
                 <form action="LoginPage" method ="post">
                     {% csrf_token %}
-             
-                   
+
+
                      <label for=""></label>
                      <input type ="text" id= "username" name= "username" placeholder ="Create a Username" Required>
                      <br>
                      <label for=""></label>
                      <input type ="password" id= "password1" name= "password1" placeholder ="Password" Required>
                      <br>
-             
+
                      <button type ="submit"> Sign In </button>
                      <br>
                      <button type ="submit"><a href="http://127.0.0.1:8000/reset_password/">Forgotten Your Password?</button></a>
-           
-        
-             
+                     <br><br>
+                     <p>Dont have an account yet?
+                     <br>
+                     Signup here:
+                     <button type ="submit"><a href="http://127.0.0.1:8000/SignupPage/">Signup</button></a>
+                     </p>
+
+
                  <script src ="" async defer></script>
             </form>
         </div>
@@ -103,9 +111,9 @@
     </nav>
 
 
-    
+
 </body>
 </html>
-    
-    
+
+
     </body

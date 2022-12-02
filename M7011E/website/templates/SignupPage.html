@@ -9,12 +9,12 @@
     <meta name="csrf_token" content="{{ csrf_token }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
- 
+
 
     <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
-    
+
 
 
 
@@ -26,17 +26,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY PERSONAL PAGE</title>
- 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
 
     <!---Lion section starts here-->
-     
+
 
 
     {%for message in messages%}
@@ -56,29 +56,32 @@
                 <li><a href="#">Profile </a></li>
                 <li><a href="#">Contact </a></li>
                 <li><a href="#">About me </a></li>
-    
 
 
 
 
 
-                
 
-              
-            
+
+
+
+
             </ul>
-      
+
         <a href="#" class="btn">Subscribe Me </a>
         <div class="content">
+        <!--
         <h4>Hello, my name is </h4>
         <h1>Hamid Ehsani</h1>
         <h3>Im a computer science student at LTU which is located in Sweden</h3>
         <h1>
+        -->
+        <h1 id="signupLogin">Sign up</h1>
         <div class ="newslatter">
             <form action="SignupPage" method ="post">
                 {% csrf_token %}
-         
-               
+
+
                  <label for=""></label>
                  <input type ="text" id= "username" name= "username" placeholder ="Create a Username" Required>
                  <br>
@@ -97,11 +100,11 @@
                  <label for=""></label>
                  <input type ="password" id= "password2" name= "password2" placeholder ="Repeat Your Password" Required>
                  <br>
-         
+
                  <button type ="submit"> Sign Up </button>
                  <br>
-                 <button type ="submit"><a href="LoginPage">Already member</button></a>
-         
+                 <a href="LoginPage"><button type ="submit">Already member</button></a>
+
              <script src ="" async defer></script>
             </h1>
             </form>
@@ -117,10 +120,9 @@
     </nav>
 
 
-    
+
 </body>
 </html>
-    
-    
-    </body
 
+
+    </body

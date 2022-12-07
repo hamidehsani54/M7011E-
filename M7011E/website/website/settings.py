@@ -19,11 +19,13 @@ from .info import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-EMAIL_USE_TLS= EMAIL_USE_TLS
-EMAIL_HOST = EMAIL_HOST
-EMAIL_HOST_USER = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
-EMAIL_PORT= EMAIL_PORT
+EMAIL_FILE_PATH =BASE_DIR / 'emails'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'folhammailer@gmail.com'
+EMAIL_HOST_PASSWORD = 'agugflusocqmtzbg'
+EMAIL_PORT = 587
 
 
 # Quick-start development settings - unsuitable for production
@@ -66,8 +68,8 @@ ROOT_URLCONF = 'website.urls'
 LOGIN_REDIRECT_URL='login'
 LOGOUT_REDORECT_URL ='login'
 
-EMAIL_BACKEND ='django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH =BASE_DIR / 'emails'
+
+
 
 TEMPLATES = [
     {
@@ -138,7 +140,7 @@ STATIC_URL = '/static/'
 import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
-    
+
     ]
 
 # Default primary key field type

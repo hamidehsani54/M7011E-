@@ -84,7 +84,7 @@ button[type=submit]{
   cursor: pointer;
 }
 button[type=submit]:hover{
-  background-color: #f9007d;
+  background-color: black;
 }
 input{
   border: 1px solid #ccc;
@@ -93,6 +93,7 @@ input{
   padding: 5pt;
   margin: 0px 10px 5px 0px;
   background-color: white;
+  color:black;
 }
 
 a{

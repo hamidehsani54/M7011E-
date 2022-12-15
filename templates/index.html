@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY PERSONAL PAGE</title>
- 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
 
     <!---Lion section starts here-->
-     
+
 
 
     <div class="lion">
@@ -39,7 +39,7 @@
                     </div>
                   </div>
 
-       
+
 
 
 
@@ -51,38 +51,38 @@
                 </button>
                 </div>
                 {% endfor %}
-                
-            
-                    
+
+
+
                 {%if user.is_authenticated%}
                 <h3> Hello, {{firstname}}</h3>
                 <h4>Your are logged in<h4/>
                 <button type="submit"><a href="SignOut">Signout</a></button>
-            
+
                 {%else%}
                 <a href="SignupPage"><button type="submit">SignUp</button></a>
                 <a href="LoginPage"><button type="submit">Login</button></a>
-                
+
                 {% endif %}
-            
-            
+
+
                 <script scr="" async defer></script>
 
-              
-            
+
+
             </ul>
-      
-        <a href="#" class="btn">Subscribe Me </a>
+
+        <a href="Subscribe" class="btn">Subscribe Me </a>
         <div class="content">
         <h4>Hello, Our name are </h4>
         <h1>Hamid Ehsani and Folke Forshed</h1>
         <h3>We are computer science students at LTU which is located in Sweden,<br>
-             Hamid have trained gym with combination of volleyball during many years<br> 
+             Hamid have trained gym with combination of volleyball during many years<br>
              Folke is a fetness trainer, he combine the gym with MMA. <br>
-             Would you like to train with me? 
+             Would you like to train with me?
              <button type="submit"><a href="SignupPage">Yes</a></button>
         </h3>
- 
+
     <div>
 
     </div>

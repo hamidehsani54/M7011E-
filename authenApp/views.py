@@ -14,7 +14,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from .models import TrainingPrograms
+from .models import TrainingPrograms, ExtendedUser
 
 from website import settings
 
@@ -177,6 +177,7 @@ def Subscribe1(request):
 def Subscribe(request):
     #  TESTING (looks like it works as intended)
     #  THIS SHOULD BE IMPLEMENTED ELSEWHERE
+
     TrainingPrograms.objects.create(programName="Test1",
                                     programDifficulty='6',
                                     programTrainer="Folke",
@@ -187,12 +188,18 @@ def Subscribe(request):
     entries = TrainingPrograms.objects.all()
     try:
         current_user = User.objects.get(pk=request.user.id)
-        current_user = current_user.is_authenticated
+        current_user_logged = current_user.is_authenticated
     except User.DoesNotExist:
         current_user = False
 
-    if current_user:
+    if current_user_logged:
         # User is logged in, display a welcome message
+
+        ## TODO: This part should take post and update OneToOneField.program to include the program.
+        #subscribeTo = request.POST.get['button']
+        #program = ExtendedUser(user=current_user, program='My Program')
+        #program.save()
+
         return render(request, "Subscribe.html", {'entries': entries})
     else:
         # User is not logged in, display a login prompt

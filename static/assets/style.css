@@ -10,6 +10,7 @@
     height: 100vh;
     background-image: url(img/volley.jpg);
     background-position: center;
+    background-attachment: fixed;
 
 }
 nav{
@@ -114,13 +115,13 @@ a{
 
     text-transform: capitalize;
   }
-  
+
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
     display: inline-block;
   }
-  
+
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
@@ -130,7 +131,7 @@ a{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
-  
+
   /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
@@ -138,7 +139,11 @@ a{
     text-decoration: none;
     display: block;
   }
-  
+
+  .containerAll{
+    margin:auto;
+  }
+
 .dropdown-content a:hover {background-color: rgb(124, 0, 122);}
 
 .dropdown:hover .dropdown-content {display: block;}

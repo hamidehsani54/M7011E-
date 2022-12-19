@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY PERSONAL PAGE</title>
 
+    <style>
+      .dynamic-div {
+        width: 200px;
+        padding: 10px;
+        float: left;
+        background-color: transparent;
+        margin: 10px;
+      }
+    </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -24,7 +33,7 @@
     </div>
     {% endfor %}
     <!---Lion section starts here-->
-
+    <br><br>
 
 
     <div class="lion">
@@ -50,22 +59,49 @@
         <a href="Subscribe" class="btn">Subscribe Me</a>
       </nav>
 
-      <div class="container">
+      <div class="containerAll">
           <h3>Here you can sign up for different training programs</h3>
           <br><br>
-
-          {% for entry in entries %}
-              <div>
-                  <p>Name: {{ entry.programName }}</p>
-                  <p>Trainer:{{ entry.programTrainer }}</p>
-                  <p>Type: {{ entry.programType }}</p>
-                  <p>Type: {{ entry.programDescription }}</p>
-                  <p>Difficulty(1-10): {{ entry.programDifficulty }}</p>
-              </div>
-          {% endfor %}
-
-
+          <script type="text/javascript">
+            addDiv()
+          </script>
+          <div id="container">
+            {% for entry in entries %}
+                <div class = "dynamic-div">
+                    <p>Name: {{ entry.programName }}</p>
+                    <p>Trainer:{{ entry.programTrainer }}</p>
+                    <p>Type: {{ entry.programType }}</p>
+                    <p>Type: {{ entry.programDescription }}</p>
+                    <p>Difficulty(1-10): {{ entry.programDifficulty }}</p>
+                    <form class="" method="post">
+                      <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
+                    </form>
+                </div>
+            {% endfor %}
+          </div>
       </div>
+      <form>
+        <select>
+          {% for entry in entries %}
+            <option>{{ entry.programName }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
+      </form>
+
+<script>
+  function addDiv() {
+    // Create a new div element
+    var newDiv = document.createElement("div");
+
+    // Add a class to the div element
+    newDiv.classList.add("dynamic-div");
+
+    // Append the div element to the container
+    document.getElementById("container").appendChild(newDiv);
+  }
+</script>
+
 
 <div class="footer">
 

@@ -6,11 +6,14 @@
 }
 .lion{
     width: 100%;
-    height: 100vh;
-    background-image: url(img/volley.jpg);
+    height: 100%;
+    background-color: rgb(134, 193, 233);
     background-position: center;
 
+
 }
+
+
 
 nav{
     display: flex;
@@ -66,12 +69,7 @@ nav ul li a:hover{
 
     transform: scale(1.2);
 }
-.content{
-    position: absolute;
-    top: 30%;
-    left: 8%;
-    transform: translateY(-50%);
-}
+
 /* Dropdown Button */
 .dropbtn {
     color: rgb(34, 33, 33);
@@ -80,13 +78,13 @@ nav ul li a:hover{
 
     text-transform: capitalize;
   }
-  
+
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
     display: inline-block;
   }
-  
+
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
@@ -96,7 +94,7 @@ nav ul li a:hover{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
-  
+
   /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
@@ -104,17 +102,48 @@ nav ul li a:hover{
     text-decoration: none;
     display: block;
   }
-  
+
 .dropdown-content a:hover {background-color: rgb(124, 0, 122);}
 
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+
+.pic{
+    margin-top: 3%;
+    margin-left: 10%;
+    width: auto;
+    height: 980px;
+}
+#Exercises {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin-top: -50.3%;
+    margin-left: 43.4%;
+  }
+
+  #Exercises td, #Exercises th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #Exercises tr:nth-child(even){background-color: #f2f2f2;}
+
+  #Exercises tr:hover {background-color: #ddd;}
+
+  #Exercises th {
+    padding-top: 3%;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #7291b4;
+    color: white;
+  }
 .footer {
     background-color: #816017;
     color: #ffffff;
-    margin-top: 46%;
+    margin-top: 0%;
     text-align: center;
     font-size: 12px;
     padding: 15px;

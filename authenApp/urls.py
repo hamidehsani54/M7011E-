@@ -6,7 +6,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
     path('SignupPage', views.SignupPage, name="SignupPag"),
-    path('LoginPage',views.LoginPage, name="LoginPage"),
+    path('LoginPage', views.LoginPage, name="LoginPage"),
     path('SignOut', views.SignOut, name="SignOut"),
     path('Profile', views.Profile, name="Profile"),
     path('About', views.About, name="About"),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('Arms', views.Arms, name="Arms"),
     path('Shoulder', views.Shoulder, name="Shoulder"),
     path('CalorieCalc', views.CalorieCalc, name="CalorieCalc"),
+    path('Subscribe', views.Subscribe, name="Subscribe"),
 
 
     #Reset password

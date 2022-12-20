@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY PERSONAL PAGE</title>
+ 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="static/assets/style.css">
+</head>
+<body>
+
+
+    {%for message in messages%}
+    <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
+    <strong>Message: </strong>{{message}}
+    <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
+    <span aria-hidden ="true">&time;</span>
+    </button>
+    </div>
+    {% endfor %}
+    <!---Lion section starts here-->
+     
+
+
+    <div class="lion">
+        <nav>
+            <h2 class="logo">Your Personal<span>Trainer </span></h2>
+            <ul>
+                <li><a href="http://127.0.0.1:8000/">Home </a></li>
+                <li><a href="Profile">Profile </a></li>
+                <li><a href="Contact">Contact </a></li>
+                <li><a href="About">About me </a></li>
+                <li><a href="CalorieCalc">Calorie Calculator </a></li>
+                <div class="dropdown">
+                    <button class="dropbtn">Exercises</button>
+                    <div class="dropdown-content">
+                      <a href="Chest">Chest</a>
+                      <a href="Back">Back</a>
+                      <a href="Leg">Leg</a>
+                      <a href="Arms">Arms</a>
+                      <a href="Shoulder">Shoulder</a>
+                    </div>
+                  </div>
+            
+            </ul>
+
+      
+        <a href="#" class="btn">Subscribe Me </a>
+        <div class="content">
+
+
+        <h3>We are a personal trainer company that was started in 2019<br>and we help people who need help
+            gaining weight or want to lose weight.<br> 
+            Right now we are two colleagues working.<br>  Hamid Ehsani and the other is Folke Forshed.<br>
+            
+            If you want to start training with us, book an appointment via email.</h3><br>
+
+
+
+    <div>
+
+    </div>
+    </div>
+            
+
+
+    </nav>
+
+
+    <div class="footer">
+                
+    </div>
+</body>

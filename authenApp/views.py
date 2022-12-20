@@ -14,7 +14,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from .models import TrainingPrograms, ExtendedUser
+from .models import TrainingPrograms
 
 from website import settings
 
@@ -189,16 +189,30 @@ def Subscribe(request):
     try:
         current_user = User.objects.get(pk=request.user.id)
         current_user_logged = current_user.is_authenticated
+
+        # Get the current user's profile
+        #profile, created = Profile.objects.get_or_create(user=request.user)
+
+        # Update the user's program field
+
+
     except User.DoesNotExist:
-        current_user = False
+        current_user_logged = False
 
     if current_user_logged:
         # User is logged in, display a welcome message
+        #current_user.program = 'My Program'
+        #current_user.save()
 
+        #current_user.ExtendedUser.objects.set(program='123')
         ## TODO: This part should take post and update OneToOneField.program to include the program.
         #subscribeTo = request.POST.get['button']
-        #program = ExtendedUser(user=current_user, program='My Program')
-        #program.save()
+        print(current_user.program)
+        print("TEST BEFORE")
+        current_user.program = "testtest"
+        current_user.save()
+        print(current_user.program)
+        print("AFTER TEST")
 
         return render(request, "Subscribe.html", {'entries': entries})
     else:

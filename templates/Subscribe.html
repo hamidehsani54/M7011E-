@@ -7,13 +7,13 @@
     <title>MY PERSONAL PAGE</title>
 
     <style>
-      .dynamic-div {
+    .dynamic-div {
         width: 200px;
         padding: 10px;
         float: left;
         background-color: transparent;
         margin: 10px;
-      }
+    }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -26,10 +26,10 @@
 
     {%for message in messages%}
     <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
-    <strong>Message: </strong>{{message}}
-    <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
-    <span aria-hidden ="true">&time;</span>
-    </button>
+        <strong>Message: </strong>{{message}}
+        <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden ="true">&time;</span>
+        </button>
     </div>
     {% endfor %}
     <!---Lion section starts here-->
@@ -48,25 +48,25 @@
                 <div class="dropdown">
                     <button class="dropbtn">Exercises</button>
                     <div class="dropdown-content">
-                      <a href="Chest">Chest</a>
-                      <a href="Back">Back</a>
-                      <a href="Leg">Leg</a>
-                      <a href="Arms">Arms</a>
-                      <a href="Shoulder">Shoulder</a>
+                        <a href="Chest">Chest</a>
+                        <a href="Back">Back</a>
+                        <a href="Leg">Leg</a>
+                        <a href="Arms">Arms</a>
+                        <a href="Shoulder">Shoulder</a>
                     </div>
                 </div>
             </ul>
-        <a href="Subscribe" class="btn">Subscribe Me</a>
-      </nav>
+            <a href="Subscribe" class="btn">Subscribe Me</a>
+        </nav>
 
-      <div class="containerAll">
-          <h3>Here you can sign up for different training programs</h3>
-          <br><br>
-          <script type="text/javascript">
+        <div class="containerAll">
+            <h3>Here you can sign up for different training programs</h3>
+            <br><br>
+            <script type="text/javascript">
             addDiv()
-          </script>
-          <div id="container">
-            {% for entry in entries %}
+            </script>
+            <div id="container">
+                {% for entry in entries %}
                 <div class = "dynamic-div">
                     <p>Name: {{ entry.programName }}</p>
                     <p>Trainer:{{ entry.programTrainer }}</p>
@@ -74,37 +74,37 @@
                     <p>Type: {{ entry.programDescription }}</p>
                     <p>Difficulty(1-10): {{ entry.programDifficulty }}</p>
                     <form class="" method="post">
-                      <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
+                        <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
                     </form>
                 </div>
-            {% endfor %}
-          </div>
-      </div>
-      <form>
-        <select>
-          {% for entry in entries %}
-            <option>{{ entry.programName }}</option>
-          {% endfor %}
-        </select>
-        <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
-      </form>
+                {% endfor %}
+            </div>
+        </div>
+        <form>
+            <select>
+                {% for entry in entries %}
+                <option>{{ entry.programName }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
+        </form>
 
-<script>
-  function addDiv() {
-    // Create a new div element
-    var newDiv = document.createElement("div");
+        <script>
+        function addDiv() {
+            // Create a new div element
+            var newDiv = document.createElement("div");
 
-    // Add a class to the div element
-    newDiv.classList.add("dynamic-div");
+            // Add a class to the div element
+            newDiv.classList.add("dynamic-div");
 
-    // Append the div element to the container
-    document.getElementById("container").appendChild(newDiv);
-  }
-</script>
+            // Append the div element to the container
+            document.getElementById("container").appendChild(newDiv);
+        }
+    </script>
 
 
-<div class="footer">
+    <div class="footer">
 
-</div>
+    </div>
 
 </body>

@@ -6,7 +6,7 @@ from telnetlib import LOGOUT
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
@@ -19,19 +19,11 @@ from .models import TrainingPrograms
 from website import settings
 
 
-def is_member_of_group(user, group_name):
-    return user.groups.filter(name=group_name).exists()
+
 # Create your views here.
 
-
 def HomePage(request):
-    if is_member_of_group(request.user, 'trainer'):
-        # user is a trainer render with aditional information
-        # TODO: add aditional info
-        return render(request, "index.html")
-    else:
-        return render(request, "index.html")
-        # user is not a trainer
+    return render(request, "index.html")
 
 
 def SignupPage(request):
@@ -42,8 +34,6 @@ def SignupPage(request):
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        access = request.POST['access']
-
 
          #check if username already exist
         if User.objects.filter(username = username):
@@ -72,12 +62,6 @@ def SignupPage(request):
             messages.error(request, "Please select a stronger password")
 
         myuser= User.objects.create_user(username, email, password1)
-
-        if(access == 'trainer'):
-            user = User.objects.get(username=username)
-            trainer_group = Group.objects.get(name='trainer')
-            user.groups.add(trainer_group)
-
         myuser.is_active = False
         myuser.save()
 
@@ -86,7 +70,7 @@ def SignupPage(request):
 
         #welcome Email
         subject = "welcome To Your Personal Trainer!"
-        message = "Hello"+ myuser.first_name  + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nYour account has been created! \n\n Thank You\n Hamid Ehsani"
+        message = "Hello"+ myuser.first_name  + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nIn order to active your account you need to confirm you our policy by clicking on the link below \n\n Thank You\n Hamid Ehsani"
         from_email = settings.EMAIL_HOST_USER
         auth_user = settings.EMAIL_HOST_USER
         auth_password= settings.EMAIL_HOST_PASSWORD
@@ -114,8 +98,8 @@ def LoginPage(request):
             firstname= user.first_name
             return render(request, "index.html", {'firstname': firstname})
         else:
-            messages.error(request, "Username or password is incorrect!")
-            return redirect('LoginPage')
+            messages.error(request, "uncorrect info")
+            return redirect('HomePage')
 
     return render(request, "LoginPage.html")
 
@@ -206,10 +190,24 @@ def Subscribe(request):
         current_user = User.objects.get(pk=request.user.id)
         current_user_logged = current_user.is_authenticated
 
+        # Get the current user's profile
+        #profile, created = Profile.objects.get_or_create(user=request.user)
+
+        # Update the user's program field
+
+
     except User.DoesNotExist:
         current_user_logged = False
 
     if current_user_logged:
+        # User is logged in, display a welcome message
+        #current_user.program = 'My Program'
+        #current_user.save()
+
+        #current_user.ExtendedUser.objects.set(program='123')
+        ## TODO: This part should take post and update OneToOneField.program to include the program.
+        #subscribeTo = request.POST.get['button']
+        print(current_user.program)
         print("TEST BEFORE")
         current_user.program = "testtest"
         current_user.save()

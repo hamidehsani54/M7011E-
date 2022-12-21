@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User, Group
 
 
 class TrainingPrograms(models.Model):
@@ -24,8 +23,3 @@ class Profile(models.Model):
     # @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.Profile.save()
-
-
-class User(models.Model):
-    # other fields here
-    groups = models.ManyToManyField(Group, related_name='users', blank=True)

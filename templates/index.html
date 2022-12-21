@@ -24,55 +24,38 @@
             <h2 class="logo">Your Personal<span>Trainer </span></h2>
             <ul>
 
-                <li><a href="Profile">Profile </a></li>
+                
                 <li><a href="Contact">Contact </a></li>
-                <li><a href="About">About me </a></li>
+                <li><a href="About">About us </a></li>
                 <li><a href="CalorieCalc">Calorie Calculator </a></li>
-                <div class="dropdown">
-                    <button class="dropbtn">Exercises</button>
-                    <div class="dropdown-content">
-                      <a href="Chest">Chest</a>
-                      <a href="Back">Back</a>
-                      <a href="Leg">Leg</a>
-                      <a href="Arms">Arms</a>
-                      <a href="Shoulder">Shoulder</a>
-                    </div>
+
+                      {%if user.is_authenticated%}
+                      <div class="dropdown">
+                        <li><a href="Profile">Profile </a></li>
+                        <button class="dropbtn">Exercises</button>
+                        <div class="dropdown-content">
+                          <a href="Chest">Chest</a>
+                          <a href="Back">Back</a>
+                          <a href="Leg">Leg</a>
+                          <a href="Arms">Arms</a>
+                          <a href="Shoulder">Shoulder</a>
+                        </div>
+                      <button type="submit"><a href="SignOut">Signout</a></button>
+      
+                      {%else%}
+                      <a href="SignupPage"><button type="submit">SignUp</button></a>
+                      <a href="LoginPage"><button type="submit">Login</button></a>
+                      <a href="Subscribe" class="btn">Subscribe Me </a>
+      
+                      {% endif %}
+                    
                   </div>
-
-
-
-
-
-                {%for message in messages%}
-                <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
-                <strong>Message: </strong>{{message}}
-                <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
-                <span aria-hidden ="true">&time;</span>
-                </button>
-                </div>
-                {% endfor %}
-
-
-
-                {%if user.is_authenticated%}
-                <h3> Hello, {{firstname}}</h3>
-                <h4>Your are logged in<h4/>
-                <button type="submit"><a href="SignOut">Signout</a></button>
-
-                {%else%}
-                <a href="SignupPage"><button type="submit">SignUp</button></a>
-                <a href="LoginPage"><button type="submit">Login</button></a>
-
-                {% endif %}
-
 
                 <script scr="" async defer></script>
 
-
-
             </ul>
-
-        <a href="Subscribe" class="btn">Subscribe Me </a>
+       
+     
         <div class="content">
         <h4>Hello, Our name are </h4>
         <h1>Hamid Ehsani and Folke Forshed</h1>
@@ -83,19 +66,15 @@
              <button type="submit"><a href="SignupPage">Yes</a></button>
         </h3>
 
-    <div>
-
-    </div>
-    </div>
-
-
-
-
-    </nav>
-
-
-    <div class="footer">
-
       </div>
+ 
+      </nav>
+
+
+  
+ 
+
+
+    
 </body>
 </html>

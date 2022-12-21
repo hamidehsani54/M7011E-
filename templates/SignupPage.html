@@ -31,23 +31,28 @@
             <nav>
                 <h2 class="logo">Your Personal<span>Trainer </span></h2>
                 <ul>
-                    <li><a href="http://127.0.0.1:8000/">Home </a></li>
-                    <li><a href="Profile">Profile </a></li>
+                     
                     <li><a href="Contact">Contact </a></li>
                     <li><a href="About">About me </a></li>
                     <li><a href="CalorieCalc">Calorie Calculator </a></li>
+                    {%if user.is_authenticated%}
                     <div class="dropdown">
-                        <button class="dropbtn">Exercises</button>
-                        <div class="dropdown-content">
-                          <a href="Chest">Chest</a>
-                          <a href="Back">Back</a>
-                          <a href="Leg">Leg</a>
-                          <a href="Arms">Arms</a>
-                          <a href="Shoulder">Shoulder</a>
-                        </div>
+                      <li><a href="Profile">Profile </a></li>
+                      <button class="dropbtn">Exercises</button>
+                      <div class="dropdown-content">
+                        <a href="Chest">Chest</a>
+                        <a href="Back">Back</a>
+                        <a href="Leg">Leg</a>
+                        <a href="Arms">Arms</a>
+                        <a href="Shoulder">Shoulder</a>
                       </div>
+                    <button type="submit"><a href="SignOut">Signout</a></button>
     
-                  
+                    {%else%}
+                    
+                    
+    
+                    {% endif %}
                 
                 </ul>
           

@@ -1,7 +1,7 @@
 from django.urls import path
 from authenApp import views
 from django.contrib.auth import views as auth_views
-
+from .views import UserEditView
 
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
@@ -18,10 +18,12 @@ urlpatterns = [
     path('Shoulder', views.Shoulder, name="Shoulder"),
     path('CalorieCalc', views.CalorieCalc, name="CalorieCalc"),
     path('Subscribe', views.Subscribe, name="Subscribe"),
+    path('schudle', views.schudle, name="schudle"),
+    path('edit_profile', UserEditView.as_view(), name="edit_profile"),
 
 
     #Reset password
-    #documentation for how reset password works
+
 
     path('reset_password/',
          auth_views.PasswordResetView.as_view(template_name="password_reset.html"),

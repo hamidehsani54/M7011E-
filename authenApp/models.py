@@ -8,9 +8,17 @@ class TrainingPrograms(models.Model):
     programType = models.CharField(max_length=100)
     programDescription = models.CharField(max_length=100)
 
-
+class schudle(models.Model):
+    Monday =models.CharField(max_length=100)
+    Tuesday =models.CharField(max_length=100)
+    Wednesday =models.CharField(max_length=100)
+    Thursday =models.CharField(max_length=100)
+    Friday =models.CharField(max_length=100)
+    Saturday =models.CharField(max_length=100)
+    Sunday =models.CharField(max_length=100)
+    
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     program = models.CharField(max_length=100, blank=True)
     start_date = models.DateField()
     end_date = models.DateField()

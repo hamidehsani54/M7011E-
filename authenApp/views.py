@@ -70,7 +70,7 @@ def SignupPage(request):
 
         #welcome Email
         subject = "welcome To Your Personal Trainer!"
-        message = "Hello"+ myuser.first_name  + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nIn order to active your account you need to confirm you our policy by clicking on the link below \n\n Thank You\n Hamid Ehsani"
+        message = "Hello"+ myuser.first_name  + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nYour account has been created! \n\n Thank You\n Hamid Ehsani"
         from_email = settings.EMAIL_HOST_USER
         auth_user = settings.EMAIL_HOST_USER
         auth_password= settings.EMAIL_HOST_PASSWORD
@@ -98,8 +98,8 @@ def LoginPage(request):
             firstname= user.first_name
             return render(request, "index.html", {'firstname': firstname})
         else:
-            messages.error(request, "uncorrect info")
-            return redirect('HomePage')
+            messages.error(request, "Username or password is incorrect!")
+            return redirect('LoginPage')
 
     return render(request, "LoginPage.html")
 

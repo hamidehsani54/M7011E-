@@ -31,27 +31,41 @@
         <nav>
             <h2 class="logo">Your Personal<span>Trainer </span></h2>
             <ul>
-                <li><a href="http://127.0.0.1:8000/">Home </a></li>
-                <li><a href="Profile">Profile </a></li>
                 <li><a href="Contact">Contact </a></li>
-                <li><a href="About">About me </a></li>
+                <li><a href="About">About us </a></li>
                 <li><a href="CalorieCalc">Calorie Calculator </a></li>
-                <div class="dropdown">
-                    <button class="dropbtn">Exercises</button>
-                    <div class="dropdown-content">
-                      <a href="Chest">Chest</a>
-                      <a href="Back">Back</a>
-                      <a href="Leg">Leg</a>
-                      <a href="Arms">Arms</a>
-                      <a href="Shoulder">Shoulder</a>
-                    </div>
+
+
+                      {%if user.is_authenticated%}
+                      <div class="dropdown">
+                        <li><a href="Profile">Profile </a></li>
+                        <button class="dropbtn">Exercises</button>
+                        <div class="dropdown-content">
+                          <a href="Chest">Chest</a>
+                          <a href="Back">Back</a>
+                          <a href="Leg">Leg</a>
+                          <a href="Arms">Arms</a>
+                          <a href="Shoulder">Shoulder</a>
+                        </div>
+                      <button type="submit"><a href="SignOut">Signout</a></button>
+      
+                      {%else%}
+                      <a href="SignupPage"><button type="submit">SignUp</button></a>
+                      <a href="LoginPage"><button type="submit">Login</button></a>
+                      <a href="Subscribe" class="btn">Subscribe Me </a>
+      
+                      {% endif %}
+                    
                   </div>
+
+                <script scr="" async defer></script>
 
             </ul>
 
-
-
-        <a href="Subscribe" class="btn">Subscribe Me </a>
+            <div>
+            </div> 
+        </div>
+   
         <div class="content">
             <h1>Calorie Calculator</h1>
             <h3>Please fill the blanket to know how much Calories you need per day!</h3>
@@ -96,18 +110,14 @@
                     <h2>Daily Caloric Intake: {{ daily_caloric_intake }}</h2>
                 {% endif %}
 
-            <div>
+         
 
-        </div>
-    </div>
-
-
-
-
-    </nav>
-
-                <div class="footer">
-
-                  </div>
-
-</body>
+             
+                        
+            
+            
+                </nav>
+            
+            
+          
+            </body>

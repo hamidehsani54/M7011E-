@@ -106,6 +106,13 @@ a{
   font-weight: bold;
   margin: 0px 10px 10px 0px;
 }
+
+.addProgram{
+    margin-top: 20%;
+    float: left;
+    width: 300px;
+    height: 237px;
+}
 /* Dropdown Button */
 .dropbtn {
     color: rgb(34, 33, 33);

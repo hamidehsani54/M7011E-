@@ -14,7 +14,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from .models import TrainingPrograms
+from .models import TrainingPrograms, Schedule
 
 from website import settings
 
@@ -62,7 +62,7 @@ def SignupPage(request):
 
         #check password 1 =password 2
         if password1 != password2:
-            messages.error( request, "Passwords does not match")
+            messages.error(request, "Passwords does not match")
 
         #wrong type of username input
         if not username.isalnum():
@@ -125,6 +125,8 @@ def SignOut(request):
     logout(request)
     messages.success(request, "Your are loged out now")
     return redirect("HomePage")
+
+
 def Profile(request):
     return render(request, "Profile.html")
 
@@ -220,3 +222,41 @@ def Subscribe(request):
     else:
         # User is not logged in, display a login prompt
         return render(request, "LoginPage.html")
+
+
+def TrainerSiteSchedule(request):
+    if request.method == "POST":
+        programName = request.POST['programName']
+        day = request.POST['day']
+        activity = request.POST['activity']
+        program = TrainingPrograms.objects.get(programName=programName)
+        schedule = Schedule(day=day, activity=activity)
+        schedule.save()
+        program.schedule = schedule
+        program.save()
+
+    entries = TrainingPrograms.objects.all()
+    return render(request, "TrainerSite.html", {'entries': entries})
+
+def TrainerSite(request):
+    if request.method == "POST":
+        programName = request.POST['programName']
+        programDifficulty = request.POST['programDifficulty']
+        programTrainer = request.POST['programTrainer']
+        programDescription = request.POST['programDescription']
+        programType = request.POST['programType']
+
+        TrainingPrograms.objects.create(programName=programName,
+                                        programDifficulty=programDifficulty,
+                                        programTrainer=programTrainer,
+                                        programDescription=programDescription,
+                                        programType=programType)
+        # Schedule
+        #programName = request.POST['programName']
+        #day = request.POST['day']
+        #activity = request.POST['activity']
+
+
+
+    entries = TrainingPrograms.objects.all()
+    return render(request, "TrainerSite.html", {'entries': entries})

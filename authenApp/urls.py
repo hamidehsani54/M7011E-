@@ -18,6 +18,8 @@ urlpatterns = [
     path('Shoulder', views.Shoulder, name="Shoulder"),
     path('CalorieCalc', views.CalorieCalc, name="CalorieCalc"),
     path('Subscribe', views.Subscribe, name="Subscribe"),
+    path('TrainerSite', views.TrainerSite, name="TrainerSite"),
+    path('TrainerSiteSchedule', views.TrainerSiteSchedule, name="TrainerSiteSchedule"),
 
 
     #Reset password

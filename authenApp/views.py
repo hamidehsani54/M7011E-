@@ -16,6 +16,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from .models import TrainingPrograms
 from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.decorators import login_required
 
 from website import settings
 from django.views import generic
@@ -106,7 +107,7 @@ def SignupPage(request):
 
 
 
-def LoginPage(request):
+def login(request):
     if request.method =='POST':
         username = request.POST['username']
         password1 = request.POST['password1']
@@ -119,7 +120,7 @@ def LoginPage(request):
             return render(request, "index.html", {'firstname': firstname})
         else:
             messages.error(request, "Username or password is incorrect!")
-            return redirect('LoginPage')
+            return redirect('login')
 
     return render(request, "LoginPage.html")
 
@@ -129,7 +130,10 @@ def SignOut(request):
     logout(request)
     messages.success(request, "Your are logged out now")
     return redirect("HomePage")
+
+@login_required
 def Profile(request):
+    
     return render(request, "Profile.html")
 
 
@@ -140,26 +144,25 @@ def About(request):
 def Contact(request):
     return render(request, "Contact.html")
 
-
+@login_required
 def Back(request):
     return render(request, "Exercises/back.html")
 
-
+@login_required
 def Chest(request):
     return render(request, "Exercises/chest.html")
 
-
+@login_required
 def Arms(request):
     return render(request, "Exercises/arms.html")
 
-
+@login_required
 def Leg(request):
     return render(request, "Exercises/leg.html")
 
-
+@login_required
 def Shoulder(request):
     return render(request, "Exercises/shoulder.html")
-
 
 def CalorieCalc(request):
     if request.method == 'POST':
@@ -188,7 +191,6 @@ def CalorieCalc(request):
         return render(request, 'CalorieCalc.html', {'daily_caloric_intake': BMR})
 
     return render(request, 'CalorieCalc.html')
-
 
 
 
@@ -222,6 +224,7 @@ def Subscribe(request):
     else:
         # User is not logged in, display a login prompt
         return render(request, "LoginPage.html")
+@login_required
 def schudle(request):
     
     schudle.objects.create(Monday="Chest",
@@ -235,9 +238,9 @@ def schudle(request):
 
     #  END TESTING
     entries = TrainingPrograms.objects.all()
-    
 
-#update user profile   
+
+#update user profile       
 class UserEditView(generic.UpdateView):
     form_class= UserChangeForm        
     template_name= 'edit_profile.html'

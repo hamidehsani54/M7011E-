@@ -15,8 +15,12 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from .models import TrainingPrograms
+from django.contrib.auth.forms import UserChangeForm
 
 from website import settings
+from django.views import generic
+from django.urls import reverse_lazy
+
 
 
 def is_member_of_group(user, group_name):
@@ -123,7 +127,7 @@ def LoginPage(request):
 
 def SignOut(request):
     logout(request)
-    messages.success(request, "Your are loged out now")
+    messages.success(request, "Your are logged out now")
     return redirect("HomePage")
 def Profile(request):
     return render(request, "Profile.html")
@@ -186,8 +190,6 @@ def CalorieCalc(request):
     return render(request, 'CalorieCalc.html')
 
 
-def Subscribe1(request):
-    return render(request, "Subscribe.html")
 
 
 def Subscribe(request):
@@ -220,3 +222,28 @@ def Subscribe(request):
     else:
         # User is not logged in, display a login prompt
         return render(request, "LoginPage.html")
+def schudle(request):
+    
+    schudle.objects.create(Monday="Chest",
+                           Tuesday="Shoulder and Arms",
+                          Wednesday= "Rest Day",
+                          Thursday= "Leg and Abs",
+                          Friday= "Back",
+                          Saturday= "Rest Day",
+                           Sunday="Cardio")
+                   
+
+    #  END TESTING
+    entries = TrainingPrograms.objects.all()
+    
+
+#update user profile   
+class UserEditView(generic.UpdateView):
+    form_class= UserChangeForm        
+    template_name= 'edit_profile.html'
+        
+    success_url=reverse_lazy('edit_profile.html')
+    
+    def get_object(self):
+        return self.request.user
+ 

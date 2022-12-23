@@ -1,22 +1,15 @@
-
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from django.core.mail import EmailMessage, send_mail
-import uuid
-from telnetlib import LOGOUT
-
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
-from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from .models import TrainingPrograms, Schedule
+from .models import TrainingPrograms
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.decorators import login_required
 
 from website import settings
+from django.views import generic
+from django.urls import reverse_lazy
 
 
 def is_member_of_group(user, group_name):
@@ -35,43 +28,42 @@ def HomePage(request):
 
 
 def SignupPage(request):
-    if request.method =="POST":
+    if request.method == "POST":
         username = request.POST['username']
-        firstname = request.POST['firstname']
-        lastname = request.POST['lastname']
+        # firstname = request.POST['firstname']
+        # lastname = request.POST['lastname']
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         access = request.POST['access']
 
-
-         #check if username already exist
-        if User.objects.filter(username = username):
+        # check if username already exist
+        if User.objects.filter(username=username):
             messages.error(request, "User already exist!")
             return redirect('LoginPage')
 
-        #check if email already registred
+        # check if email already registred
 
-        if User.objects.filter(email = email):
+        if User.objects.filter(email=email):
             messages.error(request, "Email already registred!")
             return redirect('LoginPage')
 
-        #too long username
-        if len(username)>10:
+        # too long username
+        if len(username) > 10:
             messages.error(request, "Username is too long")
 
-        #check password 1 =password 2
+        # check password 1 =password 2
         if password1 != password2:
             messages.error(request, "Passwords does not match")
 
-        #wrong type of username input
+        # wrong type of username input
         if not username.isalnum():
             messages.error(request, "Username must be Alpha-numeric!")
             return redirect('HomePage')
-        if len(password1)<5:
+        if len(password1) < 5:
             messages.error(request, "Please select a stronger password")
 
-        myuser= User.objects.create_user(username, email, password1)
+        myuser = User.objects.create_user(username, email, password1)
 
         if(access == 'trainer'):
             user = User.objects.get(username=username)
@@ -81,37 +73,33 @@ def SignupPage(request):
         myuser.is_active = False
         myuser.save()
 
-
         messages.success(request, "Your account is created succesfully. Please check your email!")
 
-        #welcome Email
+        # welcome Email
         subject = "welcome To Your Personal Trainer!"
-        message = "Hello"+ myuser.first_name  + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nYour account has been created! \n\n Thank You\n Hamid Ehsani"
+        message = "Hello" + myuser.first_name + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nYour account has been created! \n\n Thank You\n Hamid Ehsani"
         from_email = settings.EMAIL_HOST_USER
         auth_user = settings.EMAIL_HOST_USER
-        auth_password= settings.EMAIL_HOST_PASSWORD
+        auth_password = settings.EMAIL_HOST_PASSWORD
 
         to_list = [myuser.email]
-        send_mail(subject, message, from_email, to_list, fail_silently = False, auth_user=auth_user, auth_password=auth_password)
-
-
+        send_mail(subject, message, from_email, to_list, fail_silently=False, auth_user=auth_user, auth_password=auth_password)
 
         return render(request, 'LoginPage.html')
 
     return render(request, "SignupPage.html")
 
 
-
 def LoginPage(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         username = request.POST['username']
         password1 = request.POST['password1']
 
-        user= authenticate(username=username, password = password1)
+        user = authenticate(username=username, password=password1)
 
         if user is not None:
             login(request, user)
-            firstname= user.first_name
+            firstname = user.first_name
             return render(request, "index.html", {'firstname': firstname})
         else:
             messages.error(request, "Username or password is incorrect!")
@@ -120,13 +108,13 @@ def LoginPage(request):
     return render(request, "LoginPage.html")
 
 
-
 def SignOut(request):
     logout(request)
-    messages.success(request, "Your are loged out now")
+    messages.success(request, "Your are logged out now")
     return redirect("HomePage")
 
 
+@login_required(login_url='LoginPage')
 def Profile(request):
     return render(request, "Profile.html")
 
@@ -139,22 +127,27 @@ def Contact(request):
     return render(request, "Contact.html")
 
 
+@login_required(login_url='LoginPage')
 def Back(request):
     return render(request, "Exercises/back.html")
 
 
+@login_required(login_url='LoginPage')
 def Chest(request):
     return render(request, "Exercises/chest.html")
 
 
+@login_required(login_url='LoginPage')
 def Arms(request):
     return render(request, "Exercises/arms.html")
 
 
+@login_required(login_url='LoginPage')
 def Leg(request):
     return render(request, "Exercises/leg.html")
 
 
+@login_required(login_url='LoginPage')
 def Shoulder(request):
     return render(request, "Exercises/shoulder.html")
 
@@ -184,25 +177,10 @@ def CalorieCalc(request):
             BMR = BMR * 1.9
 
         return render(request, 'CalorieCalc.html', {'daily_caloric_intake': BMR})
-
     return render(request, 'CalorieCalc.html')
 
 
-def Subscribe1(request):
-    return render(request, "Subscribe.html")
-
-
 def Subscribe(request):
-    #  TESTING (looks like it works as intended)
-    #  THIS SHOULD BE IMPLEMENTED ELSEWHERE
-
-    TrainingPrograms.objects.create(programName="Test1",
-                                    programDifficulty='6',
-                                    programTrainer="Folke",
-                                    programDescription="upperbody and core",
-                                    programType="low Volume lifting")
-
-    #  END TESTING
     entries = TrainingPrograms.objects.all()
     try:
         current_user = User.objects.get(pk=request.user.id)
@@ -224,39 +202,17 @@ def Subscribe(request):
         return render(request, "LoginPage.html")
 
 
-def TrainerSiteSchedule(request):
-    if request.method == "POST":
-        programName = request.POST['programName']
-        day = request.POST['day']
-        activity = request.POST['activity']
-        program = TrainingPrograms.objects.get(programName=programName)
-        schedule = Schedule(day=day, activity=activity)
-        schedule.save()
-        program.schedule = schedule
-        program.save()
-
-    entries = TrainingPrograms.objects.all()
-    return render(request, "TrainerSite.html", {'entries': entries})
-
-def TrainerSite(request):
-    if request.method == "POST":
-        programName = request.POST['programName']
-        programDifficulty = request.POST['programDifficulty']
-        programTrainer = request.POST['programTrainer']
-        programDescription = request.POST['programDescription']
-        programType = request.POST['programType']
-
-        TrainingPrograms.objects.create(programName=programName,
-                                        programDifficulty=programDifficulty,
-                                        programTrainer=programTrainer,
-                                        programDescription=programDescription,
-                                        programType=programType)
-        # Schedule
-        #programName = request.POST['programName']
-        #day = request.POST['day']
-        #activity = request.POST['activity']
+@login_required(login_url='LoginPage')
+def schedulePage(request):
+    entries = TrainingPrograms.Schedule.objects.all()
+    return render(request, "Schedule.html", {'entries': entries})
 
 
+class UserEditView(generic.UpdateView):
+    form_class = UserChangeForm
+    template_name = 'edit_profile.html'
 
-    entries = TrainingPrograms.objects.all()
-    return render(request, "TrainerSite.html", {'entries': entries})
+    success_url = reverse_lazy('edit_profile.html')
+
+    def get_object(self):
+        return self.request.user

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from .models import TrainingPrograms
+from .models import TrainingPrograms, Schedule
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 
@@ -220,8 +220,37 @@ def schedulePage(request):
     return render(request, "Schedule.html", {'entries': entries})
 
 
+def TrainerSiteSchedule(request):
+    if request.method == "POST":
+        programName = request.POST['programName']
+        day = request.POST['day']
+        activity = request.POST['activity']
+        program = TrainingPrograms.objects.get(programName=programName)
+        schedule = Schedule(day=day, activity=activity)
+        schedule.save()
+        program.schedule = schedule
+        program.save()
+
+    entries = TrainingPrograms.objects.all()
+    return render(request, "TrainerSite.html", {'entries': entries})
+
+
 def TrainerSite(request):
-    return render(request, "TrainerSite.html")
+    if request.method == "POST":
+        programName = request.POST['programName']
+        programDifficulty = request.POST['programDifficulty']
+        programTrainer = request.POST['programTrainer']
+        programDescription = request.POST['programDescription']
+        programType = request.POST['programType']
+
+        TrainingPrograms.objects.create(programName=programName,
+                                        programDifficulty=programDifficulty,
+                                        programTrainer=programTrainer,
+                                        programDescription=programDescription,
+                                        programType=programType)
+
+    entries = TrainingPrograms.objects.all()
+    return render(request, "TrainerSite.html", {'entries': entries})
 
 
 class UserEditView(generic.UpdateView):

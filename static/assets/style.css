@@ -157,6 +157,30 @@ a{
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+.collapsible {
+  background-color: #777;
+  color: rgb(139, 27, 27);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content2 {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #b84a4a;
+  margin-top: -10%;
+}
+
 .footer {
   background-color: #816017;
   margin-top: 46%;

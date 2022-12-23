@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MY PERSONAL PAGE</title>
 
 
@@ -28,6 +29,7 @@
                 <li><a href="Contact">Contact </a></li>
                 <li><a href="About">About us </a></li>
                 <li><a href="CalorieCalc">Calorie Calculator </a></li>
+                
 
                       {%if user.is_authenticated%}
                       <li><a href="Profile">Profile </a></li>
@@ -42,6 +44,7 @@
                           <a href="Shoulder">Shoulder</a>
                         </div>
                       <button type="submit"><a href="SignOut">Signout</a></button>
+                      <a href="Subscribe" class="btn">Subscribe Me </a>
       
                       {%else%}
                       <a href="SignupPage"><button type="submit">SignUp</button></a>
@@ -55,8 +58,8 @@
                 <script scr="" async defer></script>
 
             </ul>
-       
-     
+           
+    
         <div class="content">
         <h4>Hello, Our name are </h4>
         <h1>Hamid Ehsani and Folke Forshed</h1>
@@ -64,12 +67,40 @@
              Hamid have trained gym with combination of volleyball during many years<br>
              Folke is a fetness trainer, he combine the gym with MMA. <br>
              Would you like to train with me?
-             <button type="submit"><a href="SignupPage">Yes</a></button>
-        </h3>
-
+        
+       
+         
+        
+            <button type="submit" class="collapsible">Yes</a></button>
+            <div class="collapse">
+              <p>In order for you to be able to use our training program, you need <br>to subscribe to our training program. <br>We do this by clicking on <i>Subscribe Me</i>
+              
+        
+        </h3> 
       </div>
+      </nav> 
+        <!-- Javscrip to toggle collapse button -->
+        <script>
+          var coll = document.getElementsByClassName("collapsible");
+          var i;
+          
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+            
+              if (content.style.display === "block") {
+                content.style.display = "none";
+              } else {
+                content.style.display = "block";
+              }
+            });
+          }
+          </script>
  
-      </nav>
+   
+   
+    
 
 
   

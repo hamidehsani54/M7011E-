@@ -1,4 +1,6 @@
-from django.urls import path
+from django.contrib import admin
+from django.contrib.auth.views import LoginView
+from django.urls import include, path
 from authenApp import views
 from django.contrib.auth import views as auth_views
 from .views import UserEditView
@@ -6,11 +8,13 @@ from .views import UserEditView
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
     path('SignupPage', views.SignupPage, name="SignupPag"),
-    path('LoginPage', views.LoginPage, name="LoginPage"),
+    #path('login', LoginView.as_view(template_name='LoginPage.html'), name='login'),
+    path('login', views.login, name="login"),
     path('SignOut', views.SignOut, name="SignOut"),
     path('Profile', views.Profile, name="Profile"),
     path('About', views.About, name="About"),
     path('Contact', views.Contact, name="Contact"),
+
     path('Back', views.Back, name="Back"),
     path('Leg', views.Leg, name="Leg"),
     path('Chest', views.Chest, name="Chest"),
@@ -20,6 +24,10 @@ urlpatterns = [
     path('Subscribe', views.Subscribe, name="Subscribe"),
     path('TrainerSite', views.TrainerSite, name="TrainerSite"),
     path('TrainerSiteSchedule', views.TrainerSiteSchedule, name="TrainerSiteSchedule"),
+    path('schudle', views.schudle, name="schudle"),
+    path('UserEditView', UserEditView.as_view( ), name="UserEditView"),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls),
 
 
     #Reset password

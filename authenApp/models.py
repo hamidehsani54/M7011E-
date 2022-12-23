@@ -24,7 +24,7 @@ class schudle(models.Model):
     Friday =models.CharField(max_length=100)
     Saturday =models.CharField(max_length=100)
     Sunday =models.CharField(max_length=100)
-    
+
 class Profile(models.Model):
 
     program = models.CharField(max_length=100, blank=True)

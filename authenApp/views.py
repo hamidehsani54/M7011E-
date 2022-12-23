@@ -1,20 +1,9 @@
-
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from django.core.mail import EmailMessage, send_mail
-import uuid
-from telnetlib import LOGOUT
-
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
-from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from .models import TrainingPrograms, Schedule
+from .models import TrainingPrograms
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 from website import settings
@@ -40,8 +29,8 @@ def HomePage(request):
 def SignupPage(request):
     if request.method == "POST":
         username = request.POST['username']
-        firstname = request.POST['firstname']
-        lastname = request.POST['lastname']
+        # firstname = request.POST['firstname']
+        # lastname = request.POST['lastname']
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -53,6 +42,7 @@ def SignupPage(request):
             return redirect('LoginPage')
 
         # check if email already registred
+
         if User.objects.filter(email=email):
             messages.error(request, "Email already registred!")
             return redirect('LoginPage')
@@ -99,7 +89,7 @@ def SignupPage(request):
     return render(request, "SignupPage.html")
 
 
-def login(request):
+def LoginPage(request):
     if request.method == 'POST':
         username = request.POST['username']
         password1 = request.POST['password1']
@@ -123,7 +113,7 @@ def SignOut(request):
     return redirect("HomePage")
 
 
-@login_required
+@login_required(login_url='LoginPage')
 def Profile(request):
     return render(request, "Profile.html")
 
@@ -136,27 +126,27 @@ def Contact(request):
     return render(request, "Contact.html")
 
 
-@login_required
+@login_required(login_url='LoginPage')
 def Back(request):
     return render(request, "Exercises/back.html")
 
 
-@login_required
+@login_required(login_url='LoginPage')
 def Chest(request):
     return render(request, "Exercises/chest.html")
 
 
-@login_required
+@login_required(login_url='LoginPage')
 def Arms(request):
     return render(request, "Exercises/arms.html")
 
 
-@login_required
+@login_required(login_url='LoginPage')
 def Leg(request):
     return render(request, "Exercises/leg.html")
 
 
-@login_required
+@login_required(login_url='LoginPage')
 def Shoulder(request):
     return render(request, "Exercises/shoulder.html")
 
@@ -186,21 +176,10 @@ def CalorieCalc(request):
             BMR = BMR * 1.9
 
         return render(request, 'CalorieCalc.html', {'daily_caloric_intake': BMR})
-
     return render(request, 'CalorieCalc.html')
 
 
 def Subscribe(request):
-    #  TESTING (looks like it works as intended)
-    #  THIS SHOULD BE IMPLEMENTED ELSEWHERE
-
-    TrainingPrograms.objects.create(programName="Test1",
-                                    programDifficulty='6',
-                                    programTrainer="Folke",
-                                    programDescription="upperbody and core",
-                                    programType="low Volume lifting")
-
-    #  END TESTING
     entries = TrainingPrograms.objects.all()
     try:
         current_user = User.objects.get(pk=request.user.id)
@@ -222,19 +201,10 @@ def Subscribe(request):
         return render(request, "LoginPage.html")
 
 
-def TrainerSiteSchedule(request):
-    if request.method == "POST":
-        programName = request.POST['programName']
-        day = request.POST['day']
-        activity = request.POST['activity']
-        program = TrainingPrograms.objects.get(programName=programName)
-        schedule = Schedule(day=day, activity=activity)
-        schedule.save()
-        program.schedule = schedule
-        program.save()
-
-    entries = TrainingPrograms.objects.all()
-    return render(request, "TrainerSite.html", {'entries': entries})
+@login_required(login_url='LoginPage')
+def schedulePage(request):
+    entries = TrainingPrograms.Schedule.objects.all()
+    return render(request, "Schedule.html", {'entries': entries})
 
 
 def TrainerSite(request):
@@ -255,22 +225,6 @@ def TrainerSite(request):
     return render(request, "TrainerSite.html", {'entries': entries})
 
 
-# This will not work with the current model need to change
-@login_required
-def schudle(request):
-    schudle.objects.create(Monday="Chest",
-                           Tuesday="Shoulder and Arms",
-                          Wednesday= "Rest Day",
-                          Thursday= "Leg and Abs",
-                          Friday= "Back",
-                          Saturday= "Rest Day",
-                           Sunday="Cardio")
-
-    # END TESTING
-    entries = TrainingPrograms.objects.all()
-
-
-# update user profile
 class UserEditView(generic.UpdateView):
     form_class = UserChangeForm
     template_name = 'edit_profile.html'

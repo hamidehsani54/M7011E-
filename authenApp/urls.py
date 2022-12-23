@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.views import LoginView
 from django.urls import include, path
 from authenApp import views
 from django.contrib.auth import views as auth_views
@@ -8,7 +7,6 @@ from .views import UserEditView
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
     path('SignupPage', views.SignupPage, name="SignupPag"),
-    #path('login', LoginView.as_view(template_name='LoginPage.html'), name='login'),
     path('login', views.login, name="login"),
     path('SignOut', views.SignOut, name="SignOut"),
     path('Profile', views.Profile, name="Profile"),
@@ -24,14 +22,10 @@ urlpatterns = [
     path('Subscribe', views.Subscribe, name="Subscribe"),
     path('TrainerSite', views.TrainerSite, name="TrainerSite"),
     path('TrainerSiteSchedule', views.TrainerSiteSchedule, name="TrainerSiteSchedule"),
-    path('schudle', views.schudle, name="schudle"),
-    path('UserEditView', UserEditView.as_view( ), name="UserEditView"),
+    path('schedulePage', views.schedulePage, name="schedulePage"),
+    path('UserEditView', UserEditView.as_view(), name="UserEditView"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-
-
-    #Reset password
-
 
     path('reset_password/',
          auth_views.PasswordResetView.as_view(template_name="password_reset.html"),
@@ -43,14 +37,10 @@ urlpatterns = [
 
     path('reset/<uidb64>/<token>',
          auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_form.html"),
-         name="password_reset_confirm"), #link to password for reset
+         name="password_reset_confirm"), #Link to password for reset
 
 
     path('reset_password_complete/',
          auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_done.html"),
          name="password_reset_complete"), #Confirmation that password has been changes.
-
-
-
-
 ]

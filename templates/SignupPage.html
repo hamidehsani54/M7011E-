@@ -5,19 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MY PERSONAL PAGE</title>
-     
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="static/assets/style.css">
     </head>
     <body>
-    
+
         <!---Lion section starts here-->
-         
-    
-    
+
+
+
         {%for message in messages%}
         <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
         <strong>Message: </strong>{{message}}
@@ -26,18 +26,18 @@
         </button>
         </div>
         {% endfor %}
-    
+
         <div class="lion">
             <nav>
                 <h2 class="logo">Your Personal<span>Trainer </span></h2>
                 <ul>
-                     
+
                     <li><a href="Contact">Contact </a></li>
                     <li><a href="About">About me </a></li>
                     <li><a href="CalorieCalc">Calorie Calculator </a></li>
                     {%if user.is_authenticated%}
                     <li><a href="Profile">Profile </a></li>
-                    <div class="dropdown">                      
+                    <div class="dropdown">
                       <button class="dropbtn">Exercises</button>
                       <div class="dropdown-content">
                         <a href="Chest">Chest</a>
@@ -48,16 +48,14 @@
                       </div>
                     <button type="submit"><a href="SignOut">Signout</a></button>
                     <a href="Subscribe" class="btn">Subscribe Me </a>
-    
+
                     {%else%}
-                    
-                    
-    
+
+
+
                     {% endif %}
-                
+
                 </ul>
-          
-            <a href="Subscribe" class="btn">Subscribe Me </a>
             <div class="content">
             <h4>Hello, my name is </h4>
             <h1>Hamid Ehsani</h1>
@@ -66,8 +64,8 @@
             <div class ="newslatter">
                 <form action="SignupPage" method ="post">
                     {% csrf_token %}
-             
-                   
+
+
                      <label for=""></label>
                      <input type ="text" id= "username" name= "username" placeholder ="Create a Username" Required>
                      <br>
@@ -86,27 +84,33 @@
                      <label for=""></label>
                      <input type ="password" id= "password2" name= "password2" placeholder ="Repeat Your Password" Required>
                      <br>
-             
+
+                     <select name="access">
+                        <option value="trainer">Trainer</option>
+                        <option value="user">User</option>
+                     </select>
+
+
                      <button type ="submit"> Sign Up </button>
                      <br>
                      <button type ="submit"><a href="LoginPage">Already member</button></a>
-             
+
                  <script src ="" async defer></script>
                 </h1>
                 </form>
             </div>
         <div>
-    
+
         </div>
         </div>
-    
-    
-    
-    
+
+
+
+
         </nav>
-    
-    
+
+
         <div class="footer">
-                
+
         </div>
     </body>

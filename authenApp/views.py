@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from .models import TrainingPrograms
+from .models import TrainingPrograms, Schedule
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 from website import settings
@@ -69,7 +69,7 @@ def SignupPage(request):
             trainer_group = Group.objects.get(name='trainer')
             user.groups.add(trainer_group)
 
-        myuser.is_active = False
+        myuser.is_active = True
         myuser.save()
 
         messages.success(request, "Your account is created succesfully. Please check your email!")
@@ -95,7 +95,7 @@ def LoginPage(request):
         password1 = request.POST['password1']
 
         user = authenticate(username=username, password=password1)
-
+        print(user)
         if user is not None:
             login(request, user)
             firstname = user.first_name
@@ -115,7 +115,19 @@ def SignOut(request):
 
 @login_required(login_url='LoginPage')
 def Profile(request):
-    return render(request, "Profile.html")
+    current_user = User.objects.get(pk=request.user.id)
+    group = Group.objects.get(name='trainer')
+    usersWithGroup = User.objects.filter(groups=group)
+
+    # Check if the user is in the group
+    if current_user in usersWithGroup:
+        # User is in the group
+        print("User is a trainer")
+        return render(request, "Profile.html", {'trainer': True})
+    else:
+        # User is not in the group
+        print("User is not a trainer")
+        return render(request, "Profile.html")
 
 
 def About(request):
@@ -205,6 +217,21 @@ def Subscribe(request):
 def schedulePage(request):
     entries = TrainingPrograms.Schedule.objects.all()
     return render(request, "Schedule.html", {'entries': entries})
+
+
+def TrainerSiteSchedule(request):
+    if request.method == "POST":
+        programName = request.POST['programName']
+        day = request.POST['day']
+        activity = request.POST['activity']
+        program = TrainingPrograms.objects.get(programName=programName)
+        schedule = Schedule(day=day, activity=activity)
+        schedule.save()
+        program.schedule = schedule
+        program.save()
+
+    entries = TrainingPrograms.objects.all()
+    return render(request, "TrainerSite.html", {'entries': entries})
 
 
 def TrainerSite(request):

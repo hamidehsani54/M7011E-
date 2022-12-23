@@ -31,18 +31,31 @@
                 <li><a href="CalorieCalc">Calorie Calculator </a></li>
                 {%if user.is_authenticated%}
                 <div class="dropdown">
-                  <button class="dropbtn">Exercises</button>
-                  <div class="dropdown-content">
-                    <a href="Chest">Chest</a>
-                    <a href="Back">Back</a>
-                    <a href="Leg">Leg</a>
-                    <a href="Arms">Arms</a>
-                    <a href="Shoulder">Shoulder</a>
-                  </div>
+                    <button class="dropbtn">Exercises</button>
+                    <div class="dropdown-content">
+                        <a href="Chest">Chest</a>
+                        <a href="Back">Back</a>
+                        <a href="Leg">Leg</a>
+                        <a href="Arms">Arms</a>
+                        <a href="Shoulder">Shoulder</a>
+
+
+                        {%if user.is_authenticated%}
+
+                        <button type="submit"><a href="SignOut">Signout</a></button>
+
+                        {%else%}
+                        <a href="LoginPage"><button type="submit">Login</button></a>
+
+                        {% endif %}
+                    </div>
                 </div>
-                  <li><a href="edit_profile">Update Profile </a></li>
-                <button type="submit"><a href="SignOut">Signout</a></button>
-                <a href="Subscribe" class="btn">Subscribe Me </a>
+
+
+
+
+
+
 
                 {%else%}
                 <a href="SignupPage"><button type="submit">SignUp</button></a>
@@ -51,30 +64,34 @@
 
                 {% endif %}
 
+
             </ul>
 
-        <div class="content">
-
-        <div class ="newslatter">
-                <form action="LoginPage" method ="post">
-                    {% csrf_token %}
-
-
-
-
-
-                 <script src ="" async defer></script>
-            </form>
-        </div>
-    <div>
-
-    </div>
-    </div>
+            <a href="#" class="btn">Hola </a>
+        </nav>
+            <div class="content">
+                <h4>Hello, my name is </h4>
+                <h1>Hamid Ehsani</h1>
+                <h3>Im a computer science student at LTU which is located in Sweden</h3>
+                {%if trainer%}
+                    <a href="TrainerSite"><button type="submit">Trainer Admin Page</button></a>
+                {% endif %}
+                <div class ="newslatter">
+                    <form action="LoginPage" method ="post">
+                        {% csrf_token %}
 
 
 
 
-    </nav>
+
+                        <script src ="" async defer></script>
+                    </form>
+                </div>
+                <div>
+
+                </div>
+            </div>
+
 
 
     <div class="footer">

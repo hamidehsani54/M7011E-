@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY PERSONAL PAGE</title>
- 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/static/assets/style.css">
 </head>
@@ -17,7 +17,7 @@
 
 
     <!---Lion section starts here-->
-     
+
 
 
     <div class="lion">
@@ -32,63 +32,66 @@
                 <div class="dropdown">
                     <button class="dropbtn">Exercises</button>
                     <div class="dropdown-content">
-                      <a href="Chest">Chest</a>
-                      <a href="Back">Back</a>
-                      <a href="Leg">Leg</a>
-                      <a href="Arms">Arms</a>
-                      <a href="Shoulder">Shoulder</a>
+                        <a href="Chest">Chest</a>
+                        <a href="Back">Back</a>
+                        <a href="Leg">Leg</a>
+                        <a href="Arms">Arms</a>
+                        <a href="Shoulder">Shoulder</a>
 
-                      
-                  {%if user.is_authenticated%}
-            
-                  <button type="submit"><a href="SignOut">Signout</a></button>
-  
-                  {%else%}
-                  <a href="LoginPage"><button type="submit">Login</button></a>
-  
-                  {% endif %}
+
+                        {%if user.is_authenticated%}
+
+                        <button type="submit"><a href="SignOut">Signout</a></button>
+
+                        {%else%}
+                        <a href="LoginPage"><button type="submit">Login</button></a>
+
+                        {% endif %}
                     </div>
-                  </div>
-       
-    
+                </div>
 
 
 
 
-                
 
-              
-            
+
+
+
+
+
             </ul>
-      
-        <a href="#" class="btn">Hola </a>
-        <div class="content">
-        <h4>Hello, my name is </h4>
-        <h1>Hamid Ehsani</h1>
-        <h3>Im a computer science student at LTU which is located in Sweden</h3>
-        <div class ="newslatter">
-                <form action="LoginPage" method ="post">
-                    {% csrf_token %}
-             
-       
-           
-        
-             
-                 <script src ="" async defer></script>
-            </form>
+
+            <a href="#" class="btn">Hola </a>
+            <div class="content">
+                <h4>Hello, my name is </h4>
+                <h1>Hamid Ehsani</h1>
+                <h3>Im a computer science student at LTU which is located in Sweden</h3>
+                {%if trainer%}
+                    <a href="TrainerSite"><button type="submit">Trainer Admin Page</button></a>
+                {% endif %}
+                <div class ="newslatter">
+                    <form action="LoginPage" method ="post">
+                        {% csrf_token %}
+
+
+
+
+
+                        <script src ="" async defer></script>
+                    </form>
+                </div>
+                <div>
+
+                </div>
+            </div>
+
+
+
+
+        </nav>
+
+
+        <div class="footer">
+
         </div>
-    <div>
-
-    </div>
-    </div>
-
-
-
-
-    </nav>
-
-
-    <div class="footer">
-                
-    </div>
-</body>
+    </body>

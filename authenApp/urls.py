@@ -21,6 +21,7 @@ urlpatterns = [
     path('Subscribe', views.Subscribe, name="Subscribe"),
     path('schedulePage', views.schedulePage, name="schedulePage"),
     path('UserEditView', UserEditView.as_view(), name="UserEditView"),
+    path('TrainerSite', views.TrainerSite, name="TrainerSite"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 

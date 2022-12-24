@@ -102,7 +102,7 @@ def LoginPage(request):
             return render(request, "index.html", {'firstname': firstname})
         else:
             messages.error(request, "Username or password is incorrect!")
-            return redirect('login')
+            return redirect('LoginPage')
 
     return render(request, "LoginPage.html")
 

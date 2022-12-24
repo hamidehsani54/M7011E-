@@ -7,7 +7,7 @@ from .views import UserEditView
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
     path('SignupPage', views.SignupPage, name="SignupPag"),
-    path('login', views.login, name="login"),
+    path('LoginPage', views.LoginPage, name="LoginPage"),
     path('SignOut', views.SignOut, name="SignOut"),
     path('Profile', views.Profile, name="Profile"),
     path('About', views.About, name="About"),
@@ -25,7 +25,7 @@ urlpatterns = [
     path('schedulePage', views.schedulePage, name="schedulePage"),
     path('UserEditView', UserEditView.as_view(), name="UserEditView"),
     path('TrainerSite', views.TrainerSite, name="TrainerSite"),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 
     path('reset_password/',

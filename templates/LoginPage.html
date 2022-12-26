@@ -29,7 +29,8 @@
                     <li><a href="CalorieCalc">Calorie Calculator </a></li>
                     {%if user.is_authenticated%}
                     <li><a href="Profile">Profile </a></li>
-                    <div class="dropdown">                      
+                    <div class="dropdown"> 
+                                  
                       <button class="dropbtn">Exercises</button>
                       <div class="dropdown-content">
                         <a href="Chest">Chest</a>
@@ -62,7 +63,7 @@
                      
                            
                              <label for=""></label>
-                             <input type ="text" id= "username" name= "username" placeholder ="Create a Username" Required>
+                             <input type ="text" id= "username" name= "username" placeholder ="Username" Required>
                              <br>
                              <label for=""></label>
                              <input type ="password" id= "password1" name= "password1" placeholder ="Password" Required>
@@ -79,9 +80,7 @@
                      
                              <button type ="submit"> Sign In </button>
                              <br>
-                        
-                             <button onclick="location.href='reset_password/'" type="button">
-                                Forgotten Your Password?</button>
+                             <button type="submit"><a href="reset_password/">Forgotten Your Password?</a></button>
 
                       
                     

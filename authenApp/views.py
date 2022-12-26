@@ -115,18 +115,20 @@ def SignOut(request):
 
 @login_required(login_url='LoginPage')
 def Profile(request):
+    
+
     current_user = User.objects.get(pk=request.user.id)
-    group = Group.objects.get(name='trainer')
-    usersWithGroup = User.objects.filter(groups=group)
+    #group = Group.objects.get(name='trainer')
+    usersWithGroup = User.objects.filter()
 
     # Check if the user is in the group
     if current_user in usersWithGroup:
         # User is in the group
-        print("User is a trainer")
+        print("Welcome", current_user, "you just logged in as admin")
         return render(request, "Profile.html", {'trainer': True})
     else:
         # User is not in the group
-        print("User is not a trainer")
+        print("Welcome", current_user, "you just logged in as normal user")
         return render(request, "Profile.html")
 
 
@@ -134,8 +136,14 @@ def About(request):
     return render(request, "About.html")
 
 
+
+
+
 def Contact(request):
     return render(request, "Contact.html")
+
+def edit_profile(request):
+    return render(request, "edit_profile.html")
 
 
 @login_required(login_url='LoginPage')

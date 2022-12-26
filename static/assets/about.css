@@ -71,7 +71,17 @@ nav ul li a:hover{
     top: 40%;
     left: 8%;
     transform: translateY(-50%);
+    
+
 }
+
+.collapse {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #973f3f;
+}
+
 button[type=submit]{
   background-color: #f9004d;
   color: white;
@@ -143,6 +153,10 @@ a{
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+
 
 .footer {
   background-color: #816017;

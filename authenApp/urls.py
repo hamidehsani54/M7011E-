@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from authenApp import views
 from django.contrib.auth import views as auth_views
-from .views import UserEditView
+
 
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
@@ -12,7 +12,6 @@ urlpatterns = [
     path('Profile', views.Profile, name="Profile"),
     path('About', views.About, name="About"),
     path('Contact', views.Contact, name="Contact"),
-
     path('Back', views.Back, name="Back"),
     path('Leg', views.Leg, name="Leg"),
     path('Chest', views.Chest, name="Chest"),
@@ -23,7 +22,7 @@ urlpatterns = [
     path('TrainerSite', views.TrainerSite, name="TrainerSite"),
     path('TrainerSiteSchedule', views.TrainerSiteSchedule, name="TrainerSiteSchedule"),
     path('schedulePage', views.schedulePage, name="schedulePage"),
-    path('UserEditView', UserEditView.as_view(), name="UserEditView"),
+    path('edit_profile', views.edit_profile, name="edit_profile"),
     path('TrainerSite', views.TrainerSite, name="TrainerSite"),
     path('', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),

@@ -54,7 +54,7 @@ nav ul li a:hover{
 
 .btn{
     background-color: #f9004d;
-    color: white;
+    color: rgb(170, 68, 68);
     text-decoration: none;
     border: 2px solid transparent;
     font-weight: bold;
@@ -69,7 +69,7 @@ nav ul li a:hover{
 }
 .content{
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 8%;
     transform: translateY(-50%);
 }
@@ -113,39 +113,48 @@ a{
     width: 300px;
     height: 237px;
 }
-/* Dropdown Button */
 .dropbtn {
-    color: rgb(34, 33, 33);
-    text-decoration: none;
-    font-weight: bold;
-    background-color: none;
+  background-color: #f9004d;
+  color: rgb(170, 68, 68);
+  text-decoration: none;
+  border: 2px solid transparent;
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 30px;
+  transition: transform 0.4s;
+}
 
-    text-transform: capitalize;
-  }
+.dropdown {
+position: relative;
+display: inline-block;
+}
 
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
+.dropdown-content {
+display: none;
+position: absolute;
+right: 0;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
 
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
 
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+.dropdown:hover .dropbtn {
+background-color: #3e8e41;
+}
 
   .containerAll{
     margin:auto;
@@ -157,29 +166,7 @@ a{
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.collapsible {
-  background-color: #777;
-  color: rgb(139, 27, 27);
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
 
-.active, .collapsible:hover {
-  background-color: #555;
-}
-
-.content2 {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #b84a4a;
-  margin-top: -10%;
-}
 
 .footer {
   background-color: #816017;

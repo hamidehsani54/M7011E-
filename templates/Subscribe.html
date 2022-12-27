@@ -6,64 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY PERSONAL PAGE</title>
 
-    <style>
-      .dynamic-div {
-        width: 200px;
-        padding: 10px;
-        float: left;
-        background-color: transparent;
-        margin: 10px;
-      }
-    </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/assets/style.css">
+    <link rel="stylesheet" href="/static/assets/subscribe.css">
 </head>
 <body>
 
 
-    {%for message in messages%}
-    <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
-    <strong>Message: </strong>{{message}}
-    <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
-    <span aria-hidden ="true">&time;</span>
-    </button>
-    </div>
-    {% endfor %}
     <!---Lion section starts here-->
-    <br><br>
-
+ 
 
     <div class="lion">
-        <nav>
-            <h2 class="logo">Your Personal<span>Trainer </span></h2>
-            <ul>
-              <li><a href="http://127.0.0.1:8000/">Home </a></li>                   
+
+      <nav>
+          <h2 class="logo">Your Personal<span>Trainer </span></h2>
+          <ul>
+
+              
               <li><a href="Contact">Contact </a></li>
-              <li><a href="About">About me </a></li>
+              <li><a href="About">About us </a></li>
               <li><a href="CalorieCalc">Calorie Calculator </a></li>
-              {%if user.is_authenticated%}
-              <li><a href="Profile">Profile </a></li>
-              <div class="dropdown">                      
-                <button class="dropbtn">Exercises</button>
-                <div class="dropdown-content">
-                  <a href="Chest">Chest</a>
-                  <a href="Back">Back</a>
-                  <a href="Leg">Leg</a>
-                  <a href="Arms">Arms</a>
-                  <a href="Shoulder">Shoulder</a>
+              
+
+                    {%if user.is_authenticated%}
+                    <li><a href="Profile">Profile </a></li>
+                    <div class="dropdown">
+                      
+                      <button class="dropbtn">Exercises</button>
+                      <div class="dropdown-content">
+                        <a href="Chest">Chest</a>
+                        <a href="Back">Back</a>
+                        <a href="Leg">Leg</a>
+                        <a href="Arms">Arms</a>
+                        <a href="Shoulder">Shoulder</a>
+                      </div></div>
+                    <button type="submit"><a href="SignOut">Signout</a></button>
+                  
+    
+                    {%else%}
+                    <a href="SignupPage"><button type="submit">SignUp</button></a>
+                    <a href="LoginPage"><button type="submit">Login</button></a>
+                    <a href="Subscribe" class="btn">Subscribe Me </a>
+    
+                    {% endif %}
+                  
                 </div>
-              <button type="submit"><a href="SignOut">Signout</a></button>
 
-              {%else%}
-              <a href="SignupPage"><button type="submit">SignUp</button></a>
-              <a href="LoginPage"><button type="submit">Login</button></a>
-             
+              <script scr="" async defer></script>
 
-              {% endif %}
-          
           </ul>
 
       <div class="containerAll">
@@ -110,8 +102,6 @@
 </script>
 
 
-<div class="footer">
 
-</div>
 
 </body>

@@ -20,7 +20,7 @@ class TrainingPrograms(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    program = models.CharField(max_length=100, blank=True)
+    program = models.CharField(max_length=100, blank=True, related="profile")
 
 
 # class User(models.Model):

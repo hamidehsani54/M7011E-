@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
-
+from embed_video.fields import EmbedVideoField
 
 class Schedule(models.Model):
     day = models.CharField(max_length=100)
@@ -29,7 +29,14 @@ class Profile(models.Model):
 
     program = models.CharField(max_length=100, blank=True)
 
-
+""""
 class User(models.Model):
     # other fields here
     groups = models.ManyToManyField(Group, related_name='users', blank=True)
+"""
+
+
+
+#add video on the page
+class Videoss(models.Model):
+    video = EmbedVideoField()  # same like models.URLField()

@@ -4,6 +4,7 @@ from authenApp import views
 from django.contrib.auth import views as auth_views
 
 
+
 urlpatterns = [
     path('', views.HomePage, name="HomePage"),
     path('SignupPage', views.SignupPage, name="SignupPag"),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('schedulePage', views.schedulePage, name="schedulePage"),
     path('edit_profile', views.edit_profile, name="edit_profile"),
     path('TrainerSite', views.TrainerSite, name="TrainerSite"),
+    path('Videos', views.Videos, name="Videos"),
     path('', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 

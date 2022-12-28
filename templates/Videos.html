@@ -1,6 +1,6 @@
 
-
-    <!DOCTYPE html>
+{% load embed_video_tags %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/assets/style.css">
+    <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
 
 
+  
 
     <!---Lion section starts here-->
      
@@ -48,9 +49,9 @@
                       <a href="Subscribe" class="btn">Subscribe Me </a>
       
                       {%else%}
-                      <a href="\SignupPage"><button type="submit">SignUp</button></a>
-                      <a href="\LoginPage"><button type="submit">Login</button></a>
-                      <a href=" \Subscribe" class="btn">Subscribe Me </a>
+                      <a href="SignupPage"><button type="submit">SignUp</button></a>
+                      <a href="LoginPage"><button type="submit">Login</button></a>
+                      <a href="Subscribe" class="btn">Subscribe Me </a>
       
                       {% endif %}
                     
@@ -59,16 +60,18 @@
                 <script scr="" async defer></script>
 
             </ul>
+            <p>
         <div class="content">
-            <h2>Reset Your Password</h2>
-          
-                <h3> We have just sent you an instruction about how you can reset<br> your password, please check your email. </h3>
-             
-                 <script src ="" async defer></script>
-            </form>
-                <div>
+            {% for i in obj %}
+            {% video i.video 'small' %}
+            {% endfor %}
 
-            </div>
+
+
+ 
+    <div>
+
+    </div>
     </div>
 
 
@@ -76,8 +79,8 @@
 
     </nav>
 
+
     <div class="footer">
-
+                
     </div>
-
 </body>

@@ -32,22 +32,22 @@
                 
 
                       {%if user.is_authenticated%}
-                      <li><a href="Profile">Profile </a></li>
-                
+                      <li><a href="Profile">Profile </a></li>              
                        <div class="dropdown" >
-                        </li><button class="dropbtn">Exercises</button>
+                        <button class="dropbtn">Exercises</button>
                           <div class="dropdown-content" >
                             <li><a href="Chest">Chest</a></li>
                               <li><a href="Back">Back</a></li>
                                 <li><a href="Leg">Leg</a></li>
                                   <li><a href="Arms">Arms</a></li>
                                     <li><a href="Shoulder">Shoulder</a></li>
+                                    <li><a href="Videos">Videos</a><li>
                           </div>
                         </div>
 
 
                   
-                      <button type="submit"><a href="SignOut">Signout</a></button>
+                        <a href="SigoutPage"><button type="submit">Signout</button></a>
                       <a href="Subscribe" class="btn">Subscribe Me </a>
       
                       {%else%}

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/assets/exercises.css">
+    <link rel="stylesheet" href="/static/assets/leg.css">
 </head>
 <body>
 
@@ -31,43 +31,85 @@
         <nav>
             <h2 class="logo">Your Personal<span>Trainer </span></h2>
             <ul>
-                <li><a href="HomePage">Home </a></li>
+                <li><a href="http://127.0.0.1:8000/">Home </a></li>
                 <li><a href="Profile">Profile </a></li>
                 <li><a href="Contact">Contact </a></li>
                 <li><a href="About">About me </a></li>
                 <div class="dropdown">
-                    <button class="dropbtn">Dropdown</button>
+                    <button class="dropbtn">Excercises</button>
                     <div class="dropdown-content">
-                      <a href="#">Chest</a>
-                      <a href="#">Back</a>
-                      <a href="#">Leg</a>
-                      <a href="#">Arms</a>
-                      <a href="#">Shoulder</a>
+                      <a href="Chest">Chest</a>
+                      <a href="Back">Back</a>
+                      <a href="Leg">Leg</a>
+                      <a href="Arms">Arms</a>
+                      <a href="Shoulder">Shoulder</a>
                     </div>
                   </div>
-            
+                 
             </ul>
+            <a href="#" class="btn">Subscribe Me </a>
+            <div>
+
+            </nav>
 
       
-        <a href="#" class="btn">Subscribe Me </a>
-        <div class="content">
 
-            <img src="/static/assets/img/leg.jpg" alt="Back Excercise">
+        <div class="pic">
+
+            <img src="/static/assets/img/leg.jpg" alt="leg Excercise">
+            <table id="Exercises">
+                <tr>
+                  <th>Excercise</th>
+                  <th>Reps</th>
+                  <th>Sets</th>
+                </tr>
+                <tr>
+                    <td>Back Squats </td>
+                    <td>10</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Lunges</td>
+                    <td>10-15</td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td>Romanian Deadlifts </td>
+                    <td>8-12</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Hip Thrusts </td>
+                    <td>8-12</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Calf Raises </td>
+                    <td>10-15</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Hamstring Curls </td>
+                    <td>8-12</td>
+                    <td>3</td>
+                </tr>
+   
+                 
+            </table>
+
+  
 
 
 
-    <div>
-
+  
     </div>
     </div>
             
 
-
-    </nav>
 
 
     <div class="footer">
                 
     </div>
 </body>
-

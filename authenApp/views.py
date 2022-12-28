@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from website import settings
 from django.views import generic
 from django.urls import reverse_lazy
+from .models import Videoss
 
 
 def is_member_of_group(user, group_name):
@@ -124,11 +125,9 @@ def Profile(request):
     # Check if the user is in the group
     if current_user in usersWithGroup:
         # User is in the group
-        print("Welcome", current_user, "you just logged in as admin")
         return render(request, "Profile.html", {'trainer': True})
     else:
         # User is not in the group
-        print("Welcome", current_user, "you just logged in as normal user")
         return render(request, "Profile.html")
 
 
@@ -141,6 +140,7 @@ def About(request):
 
 def Contact(request):
     return render(request, "Contact.html")
+
 
 def edit_profile(request):
     return render(request, "edit_profile.html")
@@ -169,6 +169,11 @@ def Leg(request):
 @login_required(login_url='LoginPage')
 def Shoulder(request):
     return render(request, "Exercises/shoulder.html")
+
+@login_required(login_url='LoginPage')
+def Videos(request):
+    obj= Videoss.objects.all()
+    return render(request, "Videos.html", {'obj':obj})
 
 
 def CalorieCalc(request):

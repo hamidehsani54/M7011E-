@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from embed_video.fields import EmbedVideoField
+
 
 class Schedule(models.Model):
     day = models.CharField(max_length=100)
@@ -16,27 +17,17 @@ class TrainingPrograms(models.Model):
     programDescription = models.CharField(max_length=100)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
 
-class schudle(models.Model):
-    Monday =models.CharField(max_length=100)
-    Tuesday =models.CharField(max_length=100)
-    Wednesday =models.CharField(max_length=100)
-    Thursday =models.CharField(max_length=100)
-    Friday =models.CharField(max_length=100)
-    Saturday =models.CharField(max_length=100)
-    Sunday =models.CharField(max_length=100)
 
 class Profile(models.Model):
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     program = models.CharField(max_length=100, blank=True)
 
-""""
-class User(models.Model):
+
+# class User(models.Model):
     # other fields here
-    groups = models.ManyToManyField(Group, related_name='users', blank=True)
-"""
+#    groups = models.ManyToManyField(Group, related_name='users', blank=True)
 
 
-
-#add video on the page
-class Videoss(models.Model):
+# add video on the page
+class Video(models.Model):
     video = EmbedVideoField()  # same like models.URLField()

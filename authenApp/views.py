@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from website import settings
 from django.views import generic
 from django.urls import reverse_lazy
-from .models import Videoss
+from .models import Video
 
 
 def is_member_of_group(user, group_name):
@@ -108,7 +108,7 @@ def LoginPage(request):
     return render(request, "LoginPage.html")
 
 
-def SignOut(request):
+def SignoutPage(request):
     logout(request)
     messages.success(request, "Your are logged out now")
     return redirect("HomePage")
@@ -116,11 +116,9 @@ def SignOut(request):
 
 @login_required(login_url='LoginPage')
 def Profile(request):
-    
-
     current_user = User.objects.get(pk=request.user.id)
-    #group = Group.objects.get(name='trainer')
-    usersWithGroup = User.objects.filter()
+    group = Group.objects.get(name='trainer')
+    usersWithGroup = User.objects.filter(groups=group)
 
     # Check if the user is in the group
     if current_user in usersWithGroup:
@@ -133,9 +131,6 @@ def Profile(request):
 
 def About(request):
     return render(request, "About.html")
-
-
-
 
 
 def Contact(request):
@@ -170,10 +165,11 @@ def Leg(request):
 def Shoulder(request):
     return render(request, "Exercises/shoulder.html")
 
+
 @login_required(login_url='LoginPage')
 def Videos(request):
-    obj= Videoss.objects.all()
-    return render(request, "Videos.html", {'obj':obj})
+    obj = Video.objects.all()
+    return render(request, "Videos.html", {'obj': obj})
 
 
 def CalorieCalc(request):
@@ -200,7 +196,8 @@ def CalorieCalc(request):
         elif activity_level == 'very_heavy':
             BMR = BMR * 1.9
 
-        return render(request, 'CalorieCalc.html', {'daily_caloric_intake': BMR})
+        return render(request, 'CalorieCalc.html',
+                               {'daily_caloric_intake': BMR})
     return render(request, 'CalorieCalc.html')
 
 
@@ -214,11 +211,8 @@ def Subscribe(request):
         current_user_logged = False
 
     if current_user_logged:
-        print("TEST BEFORE")
-        current_user.program = "testtest"
-        current_user.save()
-        print(current_user.program)
-        print("AFTER TEST")
+        current_user.Profile.program = "testtest"
+        current_user.Profile.save()
 
         return render(request, "Subscribe.html", {'entries': entries})
     else:

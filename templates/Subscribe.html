@@ -4,67 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY PERSONAL PAGE</title>
 
+    <title>MY PERSONAL PAGE</title>
+    <style>
+        .dynamic-div {
+          width: 200px;
+          padding: 10px;
+          float: left;
+          background-color: transparent;
+          margin: 10px;
+        }
+    </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/assets/subscribe.css">
+    <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
-
-
-    <!---Lion section starts here-->
- 
-
-    <div class="lion">
-
-      <nav>
-          <h2 class="logo">Your Personal<span>Trainer </span></h2>
-          <ul>
-
-              
-              <li><a href="Contact">Contact </a></li>
-              <li><a href="About">About us </a></li>
-              <li><a href="CalorieCalc">Calorie Calculator </a></li>
-              
-
-                    {%if user.is_authenticated%}
-                    <li><a href="Profile">Profile </a></li>
-                    <div class="dropdown">
-                      
-                      <button class="dropbtn">Exercises</button>
-                      <div class="dropdown-content">
-                        <a href="Chest">Chest</a>
-                        <a href="Back">Back</a>
-                        <a href="Leg">Leg</a>
-                        <a href="Arms">Arms</a>
-                        <a href="Shoulder">Shoulder</a>
-                        <a href="Videos">Videos</a>
-                      </div></div>
-                    <button type="submit"><a href="SignOut">Signout</a></button>
-                  
-    
-                    {%else%}
-                    <a href="SignupPage"><button type="submit">SignUp</button></a>
-                    <a href="LoginPage"><button type="submit">Login</button></a>
-                    <a href="Subscribe" class="btn">Subscribe Me </a>
-    
-                    {% endif %}
-                  
+<div class="lion">
+    <nav>
+        <h2 class="logo">Your Personal<span>Trainer </span></h2>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="Contact">Contact </a></li>
+            <li><a href="About">About us </a></li>
+            <li><a href="CalorieCalc">Calorie Calculator </a></li>
+            {%if user.is_authenticated%}
+            <li><a href="Profile">Profile</a></li>
+            <div class="dropdown" >
+                <button class="dropbtn">Exercises</button>
+                <div class="dropdown-content" >
+                    <li><a href="Chest">Chest</a></li>
+                    <li><a href="Back">Back</a></li>
+                    <li><a href="Leg">Leg</a></li>
+                    <li><a href="Arms">Arms</a></li>
+                    <li><a href="Shoulder">Shoulder</a></li>
+                    <li><a href="Videos">Videos</a><li>
                 </div>
+            </div>
+            <li><a href="SignoutPage"><button type="submit">Signout</button></a></li>
+            {%else%}
+            <li><a href="SignupPage"><button type="submit">SignUp</button></a></li>
+            <li><a href="LoginPage"><button type="submit">Login</button></a></li>
+            {% endif %}
+            <li><a href="Subscribe">Subscribe Me </a></li>
+        </ul>
+    </nav>
 
-              <script scr="" async defer></script>
 
-          </ul>
+    <script scr="" async defer></script>
 
       <div class="containerAll">
           <h3>Here you can sign up for different training programs</h3>
           <br><br>
-          <script type="text/javascript">
-            addDiv()
-          </script>
           <div id="container">
             {% for entry in entries %}
                 <div class = "dynamic-div">
@@ -73,14 +66,12 @@
                     <p>Type: {{ entry.programType }}</p>
                     <p>Type: {{ entry.programDescription }}</p>
                     <p>Difficulty(1-10): {{ entry.programDifficulty }}</p>
-                    <form class="" method="post">
-                      <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
-                    </form>
                 </div>
             {% endfor %}
           </div>
       </div>
-      <form>
+      <br>
+      <form class=dynamic-div"">
         <select>
           {% for entry in entries %}
             <option>{{ entry.programName }}</option>
@@ -89,20 +80,20 @@
         <button type="submit" name="button" value="{{ entry.programName }}">Subscribe</button>
       </form>
 
-<script>
-  function addDiv() {
-    // Create a new div element
-    var newDiv = document.createElement("div");
+    <script>
+      function addDiv() {
+        // Create a new div element
+        var newDiv = document.createElement("div");
 
-    // Add a class to the div element
-    newDiv.classList.add("dynamic-div");
+        // Add a class to the div element
+        newDiv.classList.add("dynamic-div");
 
-    // Append the div element to the container
-    document.getElementById("container").appendChild(newDiv);
-  }
-</script>
-
-
+        // Append the div element to the container
+        document.getElementById("container").appendChild(newDiv);
+      }
+    </script>
 
 
+
+</div>
 </body>

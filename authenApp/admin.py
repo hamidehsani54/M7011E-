@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import TrainingPrograms, Profile, Schedule
 from embed_video.admin import AdminVideoMixin
-from .models import Videoss
+from .models import Video
 
 
 # Register your models here.
@@ -13,10 +13,9 @@ admin.site.register(Profile)
 admin.site.register(Schedule)
 
 
-
-
-#videos
+# videos
 class MyModelAdmin(AdminVideoMixin, admin.ModelAdmin):
     pass
 
-admin.site.register(Videoss, MyModelAdmin)
+
+admin.site.register(Video, MyModelAdmin)

@@ -14,83 +14,60 @@
     <link rel="stylesheet" href="static/assets/style.css">
 </head>
 <body>
-
-    <!---Lion section starts here-->
-
-
-
     <div class="lion">
-
         <nav>
             <h2 class="logo">Your Personal<span>Trainer </span></h2>
             <ul>
-
-                
+                <li><a href="">Home</a></li>
                 <li><a href="Contact">Contact </a></li>
                 <li><a href="About">About us </a></li>
                 <li><a href="CalorieCalc">Calorie Calculator </a></li>
-                
-
-                      {%if user.is_authenticated%}
-                      <li><a href="Profile">Profile </a></li>              
-                       <div class="dropdown" >
-                        <button class="dropbtn">Exercises</button>
-                          <div class="dropdown-content" >
-                            <li><a href="Chest">Chest</a></li>
-                              <li><a href="Back">Back</a></li>
-                                <li><a href="Leg">Leg</a></li>
-                                  <li><a href="Arms">Arms</a></li>
-                                    <li><a href="Shoulder">Shoulder</a></li>
-                                    <li><a href="Videos">Videos</a><li>
-                          </div>
-                        </div>
-
-
-                  
-                        <a href="SigoutPage"><button type="submit">Signout</button></a>
-                      <a href="Subscribe" class="btn">Subscribe Me </a>
-      
-                      {%else%}
-                      <a href="SignupPage"><button type="submit">SignUp</button></a>
-                      <a href="LoginPage"><button type="submit">Login</button></a>
-                      <a href="Subscribe" class="btn">Subscribe Me </a>
-      
-                      {% endif %}
-                    
-                  </div>
-
-                <script scr="" async defer></script>
-
+                {%if user.is_authenticated%}
+                <li><a href="Profile">Profile</a></li>
+                <div class="dropdown" >
+                    <button class="dropbtn">Exercises</button>
+                    <div class="dropdown-content" >
+                        <li><a href="Chest">Chest</a></li>
+                        <li><a href="Back">Back</a></li>
+                        <li><a href="Leg">Leg</a></li>
+                        <li><a href="Arms">Arms</a></li>
+                        <li><a href="Shoulder">Shoulder</a></li>
+                        <li><a href="Videos">Videos</a><li>
+                    </div>
+                </div>
+                <li><a href="SignoutPage"><button type="submit">Signout</button></a></li>
+                {%else%}
+                <li><a href="SignupPage"><button type="submit">SignUp</button></a></li>
+                <li><a href="LoginPage"><button type="submit">Login</button></a></li>
+                {% endif %}
+                <li><a href="Subscribe">Subscribe Me </a></li>
             </ul>
-           
-    
-        <div class="content">
+        </nav>
+    </div>
+
+    <script scr="" async defer></script>
+
+
+
+    <div class="content">
         <h4>Hello, Our name are </h4>
         <h1>Hamid Ehsani and Folke Forshed</h1>
         <h3>We are computer science students at LTU which is located in Sweden,<br>
              Hamid have trained gym with combination of volleyball during many years<br>
              Folke is a fetness trainer, he combine the gym with MMA. <br>
              Would you like to train with me?
-        
-       
-         
-        
-             <a href="Subscribe">Subscribe Me </a>
-    
-        
-        </h3> 
-      </div>
-      </nav> 
+        </h3>
+    </div>
         <!-- Javscrip to toggle collapse button -->
         <script>
           var coll = document.getElementsByClassName("collapsible");
           var i;
-          
+
           for (i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function() {
               this.classList.toggle("active");
               var content = this.nextElementSibling;
-            
+
               if (content.style.display === "block") {
                 content.style.display = "none";
               } else {
@@ -99,16 +76,16 @@
             });
           }
           </script>
- 
-   
-   
-    
 
 
-  
- 
 
 
-    
+
+
+
+
+
+
+
 </body>
 </html>

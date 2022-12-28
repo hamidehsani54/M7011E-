@@ -1,91 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>MY PERSONAL PAGE</title>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="static/assets/style.css">
-</head>
-<body>
-    <div class="lion">
-        <nav>
-            <h2 class="logo">Your Personal<span>Trainer </span></h2>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="Contact">Contact </a></li>
-                <li><a href="About">About us </a></li>
-                <li><a href="CalorieCalc">Calorie Calculator </a></li>
-                {%if user.is_authenticated%}
-                <li><a href="Profile">Profile</a></li>
-                <div class="dropdown" >
-                    <button class="dropbtn">Exercises</button>
-                    <div class="dropdown-content" >
-                        <li><a href="Chest">Chest</a></li>
-                        <li><a href="Back">Back</a></li>
-                        <li><a href="Leg">Leg</a></li>
-                        <li><a href="Arms">Arms</a></li>
-                        <li><a href="Shoulder">Shoulder</a></li>
-                        <li><a href="Videos">Videos</a><li>
-                    </div>
-                </div>
-                <li><a href="SignoutPage"><button type="submit">Signout</button></a></li>
-                {%else%}
-                <li><a href="SignupPage"><button type="submit">SignUp</button></a></li>
-                <li><a href="LoginPage"><button type="submit">Login</button></a></li>
-                {% endif %}
-                <li><a href="Subscribe">Subscribe Me </a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <script scr="" async defer></script>
-
-
-
-    <div class="content">
-        <h4>Hello, Our name are </h4>
-        <h1>Hamid Ehsani and Folke Forshed</h1>
-        <h3>We are computer science students at LTU which is located in Sweden,<br>
-             Hamid have trained gym with combination of volleyball during many years<br>
-             Folke is a fetness trainer, he combine the gym with MMA. <br>
-             Would you like to train with me?
-        </h3>
-    </div>
+{% extends "BasePage.html" %}
+{% block content %}
+<div class="content">
+    <h4>Hello, Our name are </h4>
+    <h1>Hamid Ehsani and Folke Forshed</h1>
+    <h3>We are computer science students at LTU which is located in Sweden,<br>
+         Hamid have trained gym with combination of volleyball during many years<br>
+         Folke is a fetness trainer, he combine the gym with MMA. <br>
+         Would you like to train with me?
+    </h3>
+</div>
         <!-- Javscrip to toggle collapse button -->
-        <script>
-          var coll = document.getElementsByClassName("collapsible");
-          var i;
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
 
-          for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-              this.classList.toggle("active");
-              var content = this.nextElementSibling;
-
-              if (content.style.display === "block") {
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
                 content.style.display = "none";
-              } else {
+            } else {
                 content.style.display = "block";
-              }
-            });
-          }
-          </script>
-
-
-
-
-
-
-
-
-
-
-
+            }
+    });
+}
+  </script>
 </body>
 </html>
+{% endblock %}

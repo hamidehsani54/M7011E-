@@ -1,89 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY PERSONAL PAGE</title>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/assets/style.css">
-</head>
-<body>
-
-
-
-    <!---Lion section starts here-->
-
-
-
-    <div class="lion">
-        <nav>
-            <h2 class="logo">Your Personal<span>Trainer </span></h2>
-            <ul>
-
-                
-                <li><a href="Contact">Contact </a></li>
-                <li><a href="About">About us </a></li>
-                <li><a href="CalorieCalc">Calorie Calculator </a></li>
-                
-
-                      {%if user.is_authenticated%}
-                      <div class="dropdown">
-                        
-                        <button class="dropbtn">Exercises</button>
-                        <div class="dropdown-content">
-                          <a href="Chest">Chest</a>
-                          <a href="Back">Back</a>
-                          <a href="Leg">Leg</a>
-                          <a href="Arms">Arms</a>
-                          <a href="Shoulder">Shoulder</a>
-                          <a href="Videos">Videos</a>
-                        </div></div>
-                      <button type="submit"><a href="SignOut">Signout</a></button>
-                      <a href="Subscribe" class="btn">Subscribe Me </a>
-                      <a href="edit_profile" class="btn">Edit Profile </a>
-      
-                      {%else%}
-                      <a href="SignupPage"><button type="submit">SignUp</button></a>
-                      <a href="LoginPage"><button type="submit">Login</button></a>
-                      <a href="Subscribe" class="btn">Subscribe Me </a>
-      
-                      {% endif %}
-                    
-                  </div>
-
-                <script scr="" async defer></script>
-
-            </ul>
-
-        
-        </nav>
-            <div class="content">
-                <h1>Welcome to Profile Page </h1>
-                <br>
-                
-                {%if trainer%}
-                    <a href="TrainerSite"><button type="submit">Trainer Admin Page</button></a>
-                {% endif %}
-                <div class ="newslatter">
-                    <form action="LoginPage" method ="post">
-                        {% csrf_token %}
-
-
-
-
-
-                        <script src ="" async defer></script>
-                    </form>
-                </div>
-                <div>
-
-            </div>
-
-
+{% extends "BasePage.html" %}
+{% block content %}
+<div class="content">
+    <h1>Welcome to your profile page, {{ name }}!</h1>
+    <br>
+    {%if trainer%}
+    <a href="TrainerSite"><button type="submit">Trainer Admin Page</button></a>
+    {% endif %}
+    <form action="LoginPage" method ="post">
+        {% csrf_token %}
+    </form>
+</div>
 </body>
+</html>
+{% endblock %}

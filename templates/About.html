@@ -1,127 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY PERSONAL PAGE</title>
- 
+{% extends "BasePage.html" %}
+{% block content %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="static/assets/about.css">
-</head>
-<body>
-
-
-    {%for message in messages%}
-    <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
-    <strong>Message: </strong>{{message}}
-    <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
-    <span aria-hidden ="true">&time;</span>
-    </button>
-    </div>
-    {% endfor %}
-    <!---Lion section starts here-->
-     
-
-
-    <div class="lion">
-        <nav>
-            <h2 class="logo">Your Personal<span>Trainer </span></h2>
-            <ul>
-                <li><a href="Contact">Contact </a></li>
-                <li><a href="About">About us </a></li>
-                <li><a href="CalorieCalc">Calorie Calculator </a></li>
-
-
-                      {%if user.is_authenticated%}
-                      <li><a href="Profile">Profile </a></li>
-                      <div class="dropdown">
-                        
-                        <button class="dropbtn">Exercises</button>
-                        <div class="dropdown-content">
-                          <a href="Chest">Chest</a>
-                          <a href="Back">Back</a>
-                          <a href="Leg">Leg</a>
-                          <a href="Arms">Arms</a>
-                          <a href="Shoulder">Shoulder</a>
-                          <a href="Videos">Videos</a>
-                        </div>
-                      <button type="submit"><a href="SignOut">Signout</a></button>
-                      <a href="Subscribe" class="btn">Subscribe Me </a>
-      
-                      {%else%}
-                      <a href="SignupPage"><button type="submit">SignUp</button></a>
-                      <a href="LoginPage"><button type="submit">Login</button></a>
-                      <a href="Subscribe" class="btn">Subscribe Me </a>
-      
-                      {% endif %}
-                    
-                  </div>
-
-                <script scr="" async defer></script>
-
-            </ul>
-
-      
-
-        <div class="content">
-            
-
-        <h3>We are a personal trainer company that was started in 2019<br>and we help people who need help
-            gaining weight or want to lose weight.<br> 
-            Right now we are two colleagues working.<br>  Hamid Ehsani and the other is Folke Forshed.<br>
-            
-            If you want to start training with us, book an appointment via email.</h3><br>
-            <h2>Collapsibles</h2>
-
-           
-            <button type="submit" class="collapsible">More About Hamid</button>
-            <div class="collapse">
+<div class="content">
+    <h3>We are a personal trainer company that was started in 2019<br>
+        and we help people who need help gaining weight or want to lose weight.<br>
+        Right now we are two colleagues working.<br>
+        Hamid Ehsani and the other is Folke Forshed.<br>
+        If you want to start training with us, book an appointment via email.</h3><br>
+        <h2>Collapsibles</h2>
+        <button type="submit" class="collapsible">More About Hamid</button>
+        <div class="collapse">
             <p>Hamid Ehsani is a computer science student at LTU and he has 4 years experience....</p>
-            </div>
-            <button type="submit" class="collapsible">More About Folke</button>
-            <div class="collapse">
+        </div>
+        <button type="submit" class="collapsible">More About Folke</button>
+        <div class="collapse">
             <p>Folke Forshed is a computer science student at LTU and he has 8 years experience....</p>
-            </div>
-            
+        </div>
+</div>
 
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
 
-            
-
-
-
-
-
-    <div>
-
-    </div>
-    </div>
-            
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-        
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             if (content.style.display === "block") {
-              content.style.display = "none";
+                content.style.display = "none";
             } else {
-              content.style.display = "block";
+                content.style.display = "block";
             }
-          });
-        }
-        </script>
+        });
+    }
+</script>
 
+<div class="footer">
+</div>
 
-    </nav>
-
-
-    <div class="footer">
-                
-    </div>
 </body>
+</html>
+{% endblock %}

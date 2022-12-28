@@ -19,8 +19,8 @@ class TrainingPrograms(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    program = models.CharField(max_length=100, blank=True, related="profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    program = models.CharField(max_length=100, blank=True)
 
 
 # class User(models.Model):

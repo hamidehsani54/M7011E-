@@ -1,12 +1,11 @@
-
-{% load embed_video_tags %}
 {% extends "BasePage.html" %}
 {% block content %}
 <div class="content">
-    {% for i in obj %}
-    {% video i.video 'small' %}
+    {% for entry in schedule_entries %}
+        <p>{{ entry.day }}: {{ entry.activity }}</p>
     {% endfor %}
-<div>
+</div>
 </body>
 </html>
+
 {% endblock %}

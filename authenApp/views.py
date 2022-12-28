@@ -70,6 +70,7 @@ def SignupPage(request):
             trainer_group = Group.objects.get(name='trainer')
             user.groups.add(trainer_group)
 
+        #authenApp.signals.create_user_profile(sender=username)
         myuser.is_active = True
         myuser.save()
 
@@ -123,10 +124,10 @@ def Profile(request):
     # Check if the user is in the group
     if current_user in usersWithGroup:
         # User is in the group
-        return render(request, "Profile.html", {'trainer': True})
+        return render(request, "Profile.html", {'trainer': True, 'name': current_user.username})
     else:
         # User is not in the group
-        return render(request, "Profile.html")
+        return render(request, "Profile.html", {'name': current_user})
 
 
 def About(request):
@@ -211,9 +212,12 @@ def Subscribe(request):
         current_user_logged = False
 
     if current_user_logged:
-        current_user.Profile.program = "testtest"
-        current_user.Profile.save()
-
+        if request.method == "POST":
+            print("HERE")
+            program = request.POST['program']
+            print("program: " + program)
+            current_user.profile.program = program
+            current_user.profile.save()
         return render(request, "Subscribe.html", {'entries': entries})
     else:
         # User is not logged in, display a login prompt
@@ -222,8 +226,9 @@ def Subscribe(request):
 
 @login_required(login_url='LoginPage')
 def schedulePage(request):
-    entries = TrainingPrograms.Schedule.objects.all()
-    return render(request, "Schedule.html", {'entries': entries})
+    # Query the Schedule model to get all schedule entries
+    schedule_entries = Schedule.objects.all()
+    return render(request, "Schedule.html", {'schedule_entries': schedule_entries})
 
 
 def TrainerSiteSchedule(request):

@@ -1,113 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainer Administration Page</title>
+{% extends "BasePage.html" %}
+{% block content %}
 
+<div class="content">
+    <div class ="addProgram">
+        <form action="TrainerSite" method ="post">
+            {% csrf_token %}
+            <p>Add new training program</p>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="static/assets/style.css">
-</head>
-<body>
-
-    <!---Lion section starts here-->
-
-
-
-    {%for message in messages%}
-    <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
-        <strong>Message: </strong>{{message}}
-        <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
-            <span aria-hidden ="true">&time;</span>
-        </button>
+            <input type ="text" name = "programName" placeholder = "programName" Required>
+            <br>
+            <input type ="text" name = "programDifficulty" placeholder = "programDifficulty" Required>
+            <br>
+            <input type ="text" name = "programTrainer" placeholder = "programTrainer" Required>
+            <br>
+            <input type ="text" name = "programDescription" placeholder ="programDescription" Required>
+            <br>
+            <input type ="text" name = "programType" placeholder = "programType" Required>
+            <button type ="submit"> Add </button>
+        </form>
     </div>
-    {% endfor %}
-
-    <div class="lion">
-        <nav>
-            <h2 class="logo">Your Personal<span>Trainer </span></h2>
-            <ul>
-
-                <li><a href="Contact">Contact </a></li>
-                <li><a href="About">About me </a></li>
-                <li><a href="CalorieCalc">Calorie Calculator </a></li>
-                {%if user.is_authenticated%}
-                <div class="dropdown">
-                    <li><a href="Profile">Profile </a></li>
-                    <button class="dropbtn">Exercises</button>
-                    <div class="dropdown-content">
-                        <a href="Chest">Chest</a>
-                        <a href="Back">Back</a>
-                        <a href="Leg">Leg</a>
-                        <a href="Arms">Arms</a>
-                        <a href="Shoulder">Shoulder</a>
-                        <a href="Videos">Videos</a>
-                    </div>
-                    <button type="submit"><a href="SignOut">Signout</a></button>
-                    {%else%}
-                    {% endif %}
-
-                </ul>
-
-                <a href="#" class="btn">Subscribe Me </a>
-            </nav>
-
-            <div class="content">
-                    <div class ="addProgram">
-
-                        <form action="TrainerSite" method ="post">
-                        {% csrf_token %}
-                        <p>Add new training program</p>
-
-                        <input type ="text" name = "programName" placeholder = "programName" Required>
-                        <br>
-                        <input type ="text" name = "programDifficulty" placeholder = "programDifficulty" Required>
-                        <br>
-                        <input type ="text" name = "programTrainer" placeholder = "programTrainer" Required>
-                        <br>
-                        <input type ="text" name = "programDescription" placeholder ="programDescription" Required>
-                        <br>
-                        <input type ="text" name = "programType" placeholder = "programType" Required>
-                        <button type ="submit"> Add </button>
-                    </form>
-                    </div>
-                    <div class="addProgram">
-                        <form action = 'TrainerSiteSchedule' method="post">
-                        {% csrf_token %}
-                        <p>Schedule</p>
-                        <label>Program</label>
-                        <select name = 'programName'>
-                          {% for entry in entries %}
-                            <option>{{ entry.programName}}</option>
-                          {% endfor %}
-                        </select>
-                        <label>Day</label>
-                        <select name="day">
-                            <option value="monday">Monday</option>
-                            <option value="tuesday">Tuesday</option>
-                            <option value="wednsday">Wednsday</option>
-                            <option value="thursday">Thursday</option>
-                            <option value="friday">Friday</option>
-                            <option value="saturday">Saturday</option>
-                            <option value="sunday">Sunday</option>
-                        </select>
-                        <label>Activity<label>
-                        <input type ="text" name = "activity" placeholder = "Activity">
-                        <button type ="submit"> Add </button>
-                    </div>
-                    <br>
-                    <br>
-                </form>
-                <div>
-
-                </div>
-            </div>
-
-
-
-
-        </body>
+    <div class="addProgram">
+        <form action = 'TrainerSiteSchedule' method="post">
+            {% csrf_token %}
+            <p>Schedule</p>
+            <label>Program</label>
+            <select name = 'programName'>
+              {% for entry in entries %}
+                <option>{{ entry.programName}}</option>
+              {% endfor %}
+            </select>
+            <label>Day</label>
+            <select name="day">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednsday">Wednsday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+            </select>
+            <label>Activity<label>
+            <input type ="text" name = "activity" placeholder = "Activity">
+            <button type ="submit"> Add </button>
+        </div>
+        <br>
+        <br>
+    </form>
+</div>
+</body>
+</html>
+{% endblock%}

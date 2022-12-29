@@ -3,13 +3,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from .models import TrainingPrograms, Schedule
+from .models import TrainingPrograms, Schedule, Video, Trainers
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 from website import settings
 from django.views import generic
 from django.urls import reverse_lazy
-from .models import Video
+from .forms import TrainingProgramForm
 
 
 def is_member_of_group(user, group_name):
@@ -69,6 +69,8 @@ def SignupPage(request):
             user = User.objects.get(username=username)
             trainer_group = Group.objects.get(name='trainer')
             user.groups.add(trainer_group)
+            trainer = Trainers(user=user)
+            trainer.save()
 
         #authenApp.signals.create_user_profile(sender=username)
         myuser.is_active = True
@@ -248,20 +250,30 @@ def TrainerSiteSchedule(request):
 
 def TrainerSite(request):
     if request.method == "POST":
-        programName = request.POST['programName']
-        programDifficulty = request.POST['programDifficulty']
-        programTrainer = request.POST['programTrainer']
-        programDescription = request.POST['programDescription']
-        programType = request.POST['programType']
+        form = TrainingProgramForm(request.POST)
+        if form.is_valid():
+            # Process the form data and create a new TrainingPrograms instance
+            program_name = form.cleaned_data['program_name']
+            program_difficulty = form.cleaned_data['program_difficulty']
+            program_type = form.cleaned_data['program_type']
+            program_description = form.cleaned_data['program_description']
+            trainers = form.cleaned_data['trainers']
 
-        TrainingPrograms.objects.create(programName=programName,
-                                        programDifficulty=programDifficulty,
-                                        programTrainer=programTrainer,
-                                        programDescription=programDescription,
-                                        programType=programType)
-
-    entries = TrainingPrograms.objects.all()
-    return render(request, "TrainerSite.html", {'entries': entries})
+            program = TrainingPrograms(programName=program_name,
+                                       programDifficulty=program_difficulty,
+                                       programType=program_type,
+                                       programDescription=program_description,
+                                       schedule=None)
+            # Save the TrainingPrograms instance to the database
+            program.save()
+            # Add the many-to-many
+            for trainer in trainers:
+                program.trainers.add(trainer)
+                program.save()
+            return render(request, 'TrainerSite.html', {'form': form, 'entries': TrainingPrograms.objects.all()})
+    else:
+        form = TrainingProgramForm()
+    return render(request, 'TrainerSite.html', {'form': form, 'entries': TrainingPrograms.objects.all()})
 
 
 class UserEditView(generic.UpdateView):

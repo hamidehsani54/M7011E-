@@ -9,23 +9,23 @@ class Schedule(models.Model):
     # Other fields for the schedule
 
 
+class Trainers(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # other fields for the trainers model
+
+
 class TrainingPrograms(models.Model):
     programName = models.CharField(max_length=100)
     programDifficulty = models.CharField(max_length=2)
-    programTrainer = models.CharField(max_length=100)
     programType = models.CharField(max_length=100)
     programDescription = models.CharField(max_length=100)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
+    trainers = models.ManyToManyField(Trainers, related_name='training_programs', blank=True)
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     program = models.CharField(max_length=100, blank=True)
-
-
-# class User(models.Model):
-    # other fields here
-#    groups = models.ManyToManyField(Group, related_name='users', blank=True)
 
 
 # add video on the page

@@ -3,20 +3,13 @@
 
 <div class="content">
     <div class ="addProgram">
-        <form action="TrainerSite" method ="post">
+        <form action="TrainerSite" method="post">
             {% csrf_token %}
             <p>Add new training program</p>
 
-            <input type ="text" name = "programName" placeholder = "programName" Required>
-            <br>
-            <input type ="text" name = "programDifficulty" placeholder = "programDifficulty" Required>
-            <br>
-            <input type ="text" name = "programTrainer" placeholder = "programTrainer" Required>
-            <br>
-            <input type ="text" name = "programDescription" placeholder ="programDescription" Required>
-            <br>
-            <input type ="text" name = "programType" placeholder = "programType" Required>
-            <button type ="submit"> Add </button>
+            {{ form.as_p }}
+
+            <button type="submit">Add</button>
         </form>
     </div>
     <div class="addProgram">
@@ -46,6 +39,8 @@
         <br>
         <br>
     </form>
+
+
 </div>
 </body>
 </html>

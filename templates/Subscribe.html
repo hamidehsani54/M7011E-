@@ -59,7 +59,11 @@
             {% for entry in entries %}
                 <div class = "dynamic-div">
                     <p>Name: {{ entry.programName }}</p>
-                    <p>Trainer:{{ entry.programTrainer }}</p>
+                    <p>Trainer:
+                        {% for trainer in entry.trainers.all %}
+                            {{ trainer.user.username }} | 
+                        {% endfor %}
+                    </p>
                     <p>Type: {{ entry.programType }}</p>
                     <p>Type: {{ entry.programDescription }}</p>
                     <p>Difficulty(1-10): {{ entry.programDifficulty }}</p>

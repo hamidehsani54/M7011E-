@@ -1,174 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY PERSONAL PAGE</title>
- 
+{% extends "BasePage.html" %}
+{% block content %}
+<div class="pic">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/assets/arms.css">
-</head>
-<body>
+    <img src="/static/assets/img/biceps.jpg" alt="Shoulder Excercise">
+    <img src="/static/assets/img/triceps.jpg" alt="Shoulder Excercise">
+    <table id="Biceps">
+        <tr>
+          <th>Excercise</th>
+          <th>Reps</th>
+          <th>Sets</th>
+        </tr>
+        <tr>
+            <td>Concentration Curls </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Reverse Barbell Curls</td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
 
+        <tr>
+            <td>Low-Pulley Curls </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Dumbbell Curls </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>High-Pulley Curls </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Preacher Curls </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Barbell Curls </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Hammer Curls </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
 
-    {%for message in messages%}
-    <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
-    <strong>Message: </strong>{{message}}
-    <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
-    <span aria-hidden ="true">&time;</span>
-    </button>
-    </div>
-    {% endfor %}
-    <!---Lion section starts here-->
-     
+    </table>
+    <table id="Triceps">
+        <tr>
+          <th>Excercise</th>
+          <th>Reps</th>
+          <th>sets</th>
+        </tr>
+        <tr>
+            <td>Overhead Cable </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Seated E-Z bar Extension</td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
 
+        <tr>
+            <td>Push-Downs </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Tricep-Kickbacks </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Dumbell Extensions </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Reverse Push-Downs </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Tricep Dips </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Lying Bar Extension </td>
+            <td>12</td>
+            <td>3</td>
+        </tr>
 
-    <div class="lion">
-        <nav>
-            <h2 class="logo">Your Personal<span>Trainer </span></h2>
-            <ul>
-                <li><a href="http://127.0.0.1:8000/">Home </a></li>
-                <li><a href="Profile">Profile </a></li>
-                <li><a href="Contact">Contact </a></li>
-                <li><a href="About">About me </a></li>
-                <div class="dropdown">
-                    <button class="dropbtn">Excercises</button>
-                    <div class="dropdown-content">
-                      <a href="Chest">Chest</a>
-                      <a href="Back">Back</a>
-                      <a href="Leg">Leg</a>
-                      <a href="Arms">Arms</a>
-                      <a href="Shoulder">Shoulder</a>
-                    </div>
-                  </div>
-                 
-            </ul>
-            <a href="#" class="btn">Subscribe Me </a>
-            <div>
-
-            </nav>
-
-      
-
-        <div class="pic">
-
-            <img src="/static/assets/img/biceps.jpg" alt="Shoulder Excercise">
-            <img src="/static/assets/img/triceps.jpg" alt="Shoulder Excercise">
-            <table id="Biceps">
-                <tr>
-                  <th>Excercise</th>
-                  <th>Reps</th>
-                  <th>Sets</th>
-                </tr>
-                <tr>
-                    <td>Concentration Curls </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Reverse Barbell Curls</td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-
-                <tr>
-                    <td>Low-Pulley Curls </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Dumbbell Curls </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>High-Pulley Curls </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Preacher Curls </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Barbell Curls </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Hammer Curls </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                 
-            </table>
-            <table id="Triceps">
-                <tr>
-                  <th>Excercise</th>
-                  <th>Reps</th>
-                  <th>sets</th>
-                </tr>
-                <tr>
-                    <td>Overhead Cable </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Seated E-Z bar Extension</td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-
-                <tr>
-                    <td>Push-Downs </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Tricep-Kickbacks </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Dumbell Extensions </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Reverse Push-Downs </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Tricep Dips </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Lying Bar Extension </td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                 
-            </table>
-
-  
-
-
-
-  
-    </div>
-    </div>
-            
-
-
-
-    <div class="footer">
-                
-    </div>
+    </table>
 </body>
+</html>

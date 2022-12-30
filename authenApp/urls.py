@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path('HomePage', views.HomePage, name="HomePage"),
+    path('', views.HomePage, name="HomePage"),
     path('SignupPage', views.SignupPage, name="SignupPage"),
     path('LoginPage', views.LoginPage, name="LoginPage"),
     path('SignoutPage', views.SignoutPage, name="SignoutPage"),
@@ -48,3 +48,10 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_done.html"),
          name="password_reset_complete"),
 ]
+
+
+hmtx_views = [
+    path("check-username/", views.check_username, name='check-username'),
+]
+
+urlpatterns += hmtx_views

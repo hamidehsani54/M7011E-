@@ -27,7 +27,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     program = models.CharField(max_length=100, blank=True)
 
-
-# add video on the page
+#video
 class Video(models.Model):
     video = EmbedVideoField()  # same like models.URLField()

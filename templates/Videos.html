@@ -1,12 +1,13 @@
 
-{% load embed_video_tags %}
 {% extends "BasePage.html" %}
+{% load embed_video_tags %}
 {% block content %}
-<div class="content">
+
+
     {% for i in obj %}
     {% video i.video 'small' %}
     {% endfor %}
-<div>
+
 </body>
 </html>
 {% endblock %}

@@ -14,17 +14,25 @@
     <link rel="stylesheet" href="static/assets/test.css">
 </head>
 <body>
-<div class ="lion">
-    <div class="topnav" id="myTopnav">
 
-        <a href="HomePage" class="active">Home</a>
-            <a href="Contact">Contact </a>
-           <a href="About">About us </a>
-            <a href="CalorieCalc">Calorie Calculator </a>
-            {%if user.is_authenticated%}
+    <div class="topnav" id="myTopnav">
+       
+        <a href="\" class="active">Home</a>
+        <a href="Contact">Contact </a>
+        <a href="About">About us </a>
+        <a href="CalorieCalc">Calorie Calculator </a>
+        {%if user.is_authenticated%}
+
             <a href="Profile">Profile</a>
+            <a href="Subscribe">Subscribe Me </a>
+            
+            <a href="SignoutPage"><button type="submit">Signout</button></a> 
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+              </a>     
+        </div>
             <div class="dropdown" >
-                <button class="dropbtn">Exercises</button>
+                <a button class="dropbtn">Exercises</button>
                 <div class="dropdown-content" >
                     <a href="Chest">Chest</a><br>
                     <a href="Back">Back</a>
@@ -32,23 +40,37 @@
                     <a href="Arms">Arms</a>
                     <a href="Shoulder">Shoulder</a>
                     <a href="Videos">Videos</a><li>
+                
                 </div>
             </div>
-            <a href="Subscribe">Subscribe Me </a>
-            <a href="SignoutPage"><button type="submit">Signout</button></a>
-            {%else%}
-            <a href="SignupPage"><button type="submit">SignUp</button></a>
-            <a href="LoginPage"><button type="submit">Login</button></a>
-            {% endif %}
 
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
+              </a>
+        {%else%}
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+        <a href="SignupPage"><button type="submit">SignUp</button></a>
+        <a href="LoginPage"><button type="submit">Login</button></a>
+        {% endif %}
 
-</div>
+          
+        <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+        }
+        </script>
+    </div>    
+<div class ="lion">
+
+<h2 class="logo">Your Personal<span>Trainer </span></h2>
+
+
+
 
 {% block content %}
 {% endblock %}
+</div>    

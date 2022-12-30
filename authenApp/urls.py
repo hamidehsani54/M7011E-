@@ -48,3 +48,10 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_done.html"),
          name="password_reset_complete"),
 ]
+
+
+hmtx_views = [
+    path("check-username/", views.check_username, name='check-username'),
+]
+
+urlpatterns += hmtx_views

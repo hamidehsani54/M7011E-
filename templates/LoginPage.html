@@ -2,9 +2,9 @@
 {% block content %}
 
 <div class="content">
-    <h4>Hello, my name is </h4>
-    <h1>Hamid Ehsani</h1>
-    <h3>Im a computer science student at LTU which is located in Sweden</h3>
+
+    
+    <h3>Welcome to Your Personal Trainer website</h3>
     <div class ="newslatter">
         <form action="LoginPage" method ="post">
             {% csrf_token %}
@@ -20,13 +20,13 @@
             <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
             <span aria-hidden ="true"></span>
             </button>
-            </div>
+            </div>  
             {% endfor %}
-
+            <br>
             <button type ="submit"> Sign In </button>
             <br>
         </form>
-        <button type="submit"><a href="reset_password/">Forgotten Your Password?</a></button>
+        <a href="reset_password/"><button type="submit">Forgotten Your Password?</a></button>
     </div>
 </body>
 </html>

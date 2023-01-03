@@ -1,15 +1,17 @@
-{% extends "BasePage.html" %}
+{% extends 'basePage.html' %}
+{% load widget_tweaks %}
 {% block content %}
 <div class="content">
-    <h4>Hello, my name is </h4>
-    <h1>Hamid Ehsani</h1>
-    <h3>Im a computer science student at LTU which is located in Sweden</h3>
-    <h1>
+   
+    <h1>You can sign in here</h1>
+   
+
     <div class ="newslatter">
         <form action="SignupPage" method ="post">
             {% csrf_token %}
+   
             <label for=""></label>
-            <input type ="text" id= "username" name= "username" placeholder ="Create a Username" Required>
+            <input type ="text" id= "username" name= "username" placeholder ="Username" Required>
             <br>
             <label for=""></label>
             <input type ="text" id= "firstname" name= "firstname" placeholder ="First Name" Required>
@@ -17,8 +19,8 @@
             <label for=""></label>
             <input type ="text" id= "lastname" name= "lastname" placeholder ="Last Name" Required>
             <br>
-            <label for=""></label>
-            <input type ="email" id= "email" name= "email" placeholder ="Your Email adress" Required>
+            <label for="email"></label>
+            <input type="text" id="email" name="email" placeholder="Your email..">
             <br>
             <label for=""></label>
             <input type ="password" id= "password1" name= "password1" placeholder ="Password" Required>
@@ -31,7 +33,16 @@
                 <option value="trainer">Trainer</option>
                 <option value="user">User</option>
             </select>
+            <br>
 
+            <div class="form-group mb-3">
+                <label>{{ form.username.label_tag }}</label>
+                {{ form.username.errors }}
+                {% render_field form.username hx-post="/check-username/" hx-target="#username-err" hx-trigger="keyup" class="form-control" %}
+                <div class="text-danger mt-2" id="username-err">
+                    
+                </div>
+            </div>
             <button type ="submit"> Sign Up </button>
             <br>
         </form>

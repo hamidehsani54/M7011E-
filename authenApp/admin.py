@@ -16,8 +16,10 @@ admin.site.register(Schedule)
 
 
 # videos
+
+
+
 class MyModelAdmin(AdminVideoMixin, admin.ModelAdmin):
     pass
-
 
 admin.site.register(Video, MyModelAdmin)

@@ -222,6 +222,16 @@ def schedulePage(request):
         return render(request, "Profile.html", {'name': current_user})
 
 
+def TrainerSiteRemove(request):
+    if request.method == "POST":
+        programName = request.POST['programName']
+        instance = TrainingPrograms.objects.get(programName=programName)
+        instance.delete()
+        TrainingPrograms.objects.filter(programName=programName).delete()
+    entries = TrainingPrograms.objects.all()
+    return render(request, "TrainerSite.html", {'entries': entries, 'form': TrainingProgramForm()})
+
+
 def TrainerSiteSchedule(request):
     if request.method == "POST":
         programName = request.POST['programName']
@@ -234,7 +244,7 @@ def TrainerSiteSchedule(request):
         program.save()
 
     entries = TrainingPrograms.objects.all()
-    return render(request, "TrainerSite.html", {'entries': entries})
+    return render(request, "TrainerSite.html", {'entries': entries, 'form': TrainingProgramForm()})
 
 
 def TrainerSite(request):

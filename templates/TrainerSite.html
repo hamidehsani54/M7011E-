@@ -40,6 +40,18 @@
         <br>
     </form>
 
+    <form action='TrainerSiteRemove' method="post">
+        {% csrf_token %}
+        <p>REMOVE Training Program (Cannot be undone)</p>
+        <label>Program</label>
+        <select name = 'programName'>
+          {% for entry in entries %}
+            <option>{{ entry.programName}}</option>
+          {% endfor %}
+        </select>
+        <button type ="submit"> Remove </button>
+    </form>
+
 
 </div>
 </body>

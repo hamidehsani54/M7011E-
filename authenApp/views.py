@@ -1,5 +1,6 @@
+from django.http.response import HttpResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
@@ -9,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 from website import settings
 from django.views import generic
 from django.urls import reverse_lazy
-from .forms import TrainingProgramForm
+from .forms import TrainingProgramForm, SignUpForm, LoginForm
+from django.views.generic import FormView
 
 
 def is_member_of_group(user, group_name):
@@ -29,86 +31,63 @@ def HomePage(request):
 
 def SignupPage(request):
     if request.method == "POST":
-        username = request.POST['username']
-        # firstname = request.POST['firstname']
-        # lastname = request.POST['lastname']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        access = request.POST['access']
-
-        # check if username already exist
-        if User.objects.filter(username=username):
-            messages.error(request, "User already exist!")
-            return redirect('LoginPage')
-
-        # check if email already registred
-
-        if User.objects.filter(email=email):
-            messages.error(request, "Email already registred!")
-            return redirect('LoginPage')
-
-        # too long username
-        if len(username) > 10:
-            messages.error(request, "Username is too long")
-
-        # check password 1 =password 2
-        if password1 != password2:
-            messages.error(request, "Passwords does not match")
-
-        # wrong type of username input
-        if not username.isalnum():
-            messages.error(request, "Username must be Alpha-numeric!")
-            return redirect('HomePage')
-        if len(password1) < 5:
-            messages.error(request, "Please select a stronger password")
-
-        myuser = User.objects.create_user(username, email, password1)
-
-        if(access == 'trainer'):
-            user = User.objects.get(username=username)
-            trainer_group = Group.objects.get(name='trainer')
-            user.groups.add(trainer_group)
-            trainer = Trainers(user=user)
-            trainer.save()
-
-        #authenApp.signals.create_user_profile(sender=username)
-        myuser.is_active = True
-        myuser.save()
-
-        messages.success(request, "Your account is created succesfully. Please check your email!")
-
-        # welcome Email
-        subject = "welcome To Your Personal Trainer!"
-        message = "Hello" + myuser.first_name + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nYour account has been created! \n\n Thank You\n Hamid Ehsani"
-        from_email = settings.EMAIL_HOST_USER
-        auth_user = settings.EMAIL_HOST_USER
-        auth_password = settings.EMAIL_HOST_PASSWORD
-
-        to_list = [myuser.email]
-        send_mail(subject, message, from_email, to_list, fail_silently=False, auth_user=auth_user, auth_password=auth_password)
-
-        return render(request, 'LoginPage.html')
-
-    return render(request, "SignupPage.html")
+        form = SignUpForm(request.POST)
+        print("here1")
+        print(form.is_valid())
+        print(form.errors)
+        if form.is_valid():
+            print("here2")
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password1 = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+            access = form.cleaned_data['access']
+            # Check if username already exists
+            if User.objects.filter(username=username):
+                messages.error(request, "User already exist!")
+                return redirect("LoginPage")
+            # Check if email already registered
+            if User.objects.filter(email=email):
+                messages.error(request, "Email already registered!")
+                return redirect("LoginPage")
+            # Check if password1 equals password2
+            if password1 != password2:
+                messages.error(request, "Passwords do not match")
+                return redirect("SignupPage")
+            # Create user
+            myuser = User.objects.create_user(username, email, password1)
+            # Add user to trainer group if access is "trainer"
+            if access == "trainer":
+                user = User.objects.get(username=username)
+                trainer_group = Group.objects.get(name="trainer")
+                user.groups.add(trainer_group)
+                trainer = Trainers(user=user)
+                trainer.save()
+            myuser.is_active = True
+            myuser.save()
+            messages.success(request, "Your account is created successfully. Please check your email!")
+            send_welcome_email(myuser)
+            return redirect("LoginPage")
+    else:
+        form = SignUpForm()
+    return render(request, "SignupPage.html", {'form': form})
 
 
 def LoginPage(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password1 = request.POST['password1']
-
-        user = authenticate(username=username, password=password1)
-        print(user)
-        if user is not None:
-            login(request, user)
-            firstname = user.first_name
-            return render(request, "index.html", {'firstname': firstname})
-        else:
-            messages.error(request, "Username or password is incorrect!")
-            return redirect('LoginPage')
-
-    return render(request, "LoginPage.html")
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('Profile')
+            else:
+                form.add_error(None, 'Invalid login')
+    else:
+        form = LoginForm()
+    return render(request, 'LoginPage.html', {'form': form})
 
 
 def SignoutPage(request):
@@ -242,6 +221,7 @@ def schedulePage(request):
     else:
         return render(request, "Profile.html", {'name': current_user})
 
+
 def TrainerSiteSchedule(request):
     if request.method == "POST":
         programName = request.POST['programName']
@@ -283,6 +263,55 @@ def TrainerSite(request):
     else:
         form = TrainingProgramForm()
     return render(request, 'TrainerSite.html', {'form': form, 'entries': TrainingPrograms.objects.all()})
+
+
+def send_welcome_email(user):
+    subject = "welcome To Your Personal Trainer!"
+    message = "Hello" + user.first_name + "!! \n" + "Welcome to Your Personal Trainer and we are glad to have you here! \nYour account has been created! \n\n Thank You\n Hamid Ehsani"
+    from_email = settings.EMAIL_HOST_USER
+    auth_user = settings.EMAIL_HOST_USER
+    auth_password = settings.EMAIL_HOST_PASSWORD
+
+    to_list = [user.email]
+    send_mail(subject, message, from_email, to_list, fail_silently=False, auth_user=auth_user, auth_password=auth_password)
+
+
+def authenticate_user(username, password):
+    user = authenticate(username=username, password=password)
+    return user
+
+
+def check_username(request):
+    username = request.POST.get('username')
+    if get_user_model().objects.filter(username=username).exists():
+        return HttpResponse("This username already exists")
+    else:
+        return HttpResponse("This username is avalible")
+
+
+def check_username_login(request):
+    username = request.POST.get('username')
+    if get_user_model().objects.filter(username=username).exists():
+        return HttpResponse("")
+    else:
+        return HttpResponse("This user does not exist")
+
+
+def check_email(request):
+    email = request.POST.get('email')
+    if get_user_model().objects.filter(email=email).exists():
+        return HttpResponse("This email already exists")
+    else:
+        return HttpResponse("This email is avalible")
+
+
+def check_password(request):
+    password2 = request.POST.get('password2')
+    password1 = request.POST.get('password1')
+    if password2 == password1:
+        return HttpResponse("Passwords match")
+    else:
+        return HttpResponse("Passwords dont match")
 
 
 class UserEditView(generic.UpdateView):

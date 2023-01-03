@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-  
-    
+    'django_htmx',
+
+
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
 ]
 
 
@@ -145,7 +147,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
-    
     ]
 
 # Default primary key field type

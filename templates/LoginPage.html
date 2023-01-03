@@ -1,32 +1,24 @@
 {% extends "BasePage.html" %}
 {% block content %}
+{% load widget_tweaks %}
 
 <div class="content">
 
-    
+
     <h3>Welcome to Your Personal Trainer website</h3>
     <div class ="newslatter">
-        <form action="LoginPage" method ="post">
+        <form method="post" action="{% url 'LoginPage' %}">
             {% csrf_token %}
-            <label for=""></label>
-            <input type ="text" id= "username" name= "username" placeholder ="Username" Required>
+            {{ form.username.label_tag }}
+            {% render_field form.username class="form-controll" hx-post="checkUserLog" hx-trigger="keyup" hx-target="#usernameInvalid"%}
+            <div id='usernameInvalid'></div>
             <br>
-            <label for=""></label>
-            <input type ="password" id= "password1" name= "password1" placeholder ="Password" Required>
+            {{ form.password.label_tag }}
+            {{ form.password }}
             <br>
-            {%for message in messages%}
-            <div class ="alert alert-{{message.tags}} alert-dismissible fade show" role ="alert">
-            {{message}}
-            <button type ="button" class ="close" data-dismiss="alert" aria-label="close">
-            <span aria-hidden ="true"></span>
-            </button>
-            </div>  
-            {% endfor %}
-            <br>
-            <button type ="submit"> Sign In </button>
-            <br>
+            <button type="submit">Log in</button>
         </form>
-        <a href="reset_password/"><button type="submit">Forgotten Your Password?</a></button>
+        <a href="reset_password/"><button type="submit">Forgotten Your Password?</button></a>
     </div>
 </body>
 </html>

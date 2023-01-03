@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <!--HTMX-->
+    {% load static %}
+    <script src="{% static 'htmx.min.js' %}" defer></script>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -13,13 +16,12 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/assets/test.css">
 
-        <!-- HTMX -->
-        <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+
 </head>
 <body>
 
     <div class="topnav" id="myTopnav">
-       
+
         <a href="\" class="active">Home</a>
         <a href="Contact">Contact </a>
         <a href="About">About us </a>
@@ -28,11 +30,11 @@
 
             <a href="Profile">Profile</a>
             <a href="Subscribe">Subscribe Me </a>
-            
-            <a href="SignoutPage"><button type="submit">Signout</button></a> 
+
+            <a href="SignoutPage"><button type="submit">Signout</button></a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
-              </a>     
+              </a>
         </div>
             <div class="dropdown" >
                 <a button class="dropbtn">Exercises</button>
@@ -43,7 +45,7 @@
                     <a href="Arms">Arms</a>
                     <a href="Shoulder">Shoulder</a>
                     <a href="Videos">Videos</a><li>
-                
+
                 </div>
             </div>
 
@@ -55,7 +57,7 @@
         <a href="LoginPage"><button type="submit">Login</button></a>
         {% endif %}
 
-          
+
         <script>
         function myFunction() {
         var x = document.getElementById("myTopnav");
@@ -66,7 +68,7 @@
         }
         }
         </script>
-    </div>    
+    </div>
 <div class ="lion">
 
 <h2 class="logo">Your Personal<span>Trainer </span></h2>
@@ -76,4 +78,4 @@
 
 {% block content %}
 {% endblock %}
-</div>    
+</div>

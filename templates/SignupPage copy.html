@@ -1,0 +1,42 @@
+{% extends 'basePage.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="content">
+    <div class ="newslatter">
+        <form action="SignupPage" method ="post">
+            {% csrf_token %}
+
+            <label for=""></label>
+            <input type ="text" id= "username" name= "username" placeholder ="Username" Required>
+            <br>
+            <label for=""></label>
+            <input type ="text" id= "firstname" name= "firstname" placeholder ="First Name" Required>
+            <br>
+            <label for=""></label>
+            <input type ="text" id= "lastname" name= "lastname" placeholder ="Last Name" Required>
+            <br>
+            <label for="email"></label>
+            <input type="text" id="email" name="email" placeholder="Your email..">
+            <br>
+            <label for=""></label>
+            <input type ="password" id= "password1" name= "password1" placeholder ="Password" Required>
+            <br>
+            <label for=""></label>
+            <input type ="password" id= "password2" name= "password2" placeholder ="Repeat Your Password" Required>
+            <br>
+
+            <select name="access">
+                <option value="trainer">Trainer</option>
+                <option value="user">User</option>
+            </select>
+            <br>
+            <button type ="submit"> Sign Up </button>
+            <br>
+        </form>
+        <a href="LoginPage"><button type ="submit">Already member</button></a>
+    </div>
+</div>
+</body>
+</html>
+
+{% endblock %}

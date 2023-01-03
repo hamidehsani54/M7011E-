@@ -20,6 +20,7 @@ urlpatterns = [
     path('CalorieCalc', views.CalorieCalc, name="CalorieCalc"),
     path('Subscribe', views.Subscribe, name="Subscribe"),
     path('TrainerSite', views.TrainerSite, name="TrainerSite"),
+    path('TrainerSiteRemove', views.TrainerSiteRemove, name="TrainerSiteRemove"),
     path('TrainerSiteSchedule', views.TrainerSiteSchedule, name="TrainerSiteSchedule"),
     path('schedulePage', views.schedulePage, name="schedulePage"),
     path('edit_profile', views.edit_profile, name="edit_profile"),

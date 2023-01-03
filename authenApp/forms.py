@@ -1,7 +1,5 @@
 from django import forms
 from .models import Trainers
-from django.contrib.auth.forms import UserCreationForm
-from authenApp.models import User
 
 
 class TrainingProgramForm(forms.Form):
@@ -26,4 +24,10 @@ class SignUpForm(forms.Form):
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput)
+
+
+class ChangeNameForm(forms.Form):
+    usernameNew = forms.CharField(max_length=100)
+    usernameOld = forms.CharField(max_length=100)
     password = forms.CharField(max_length=100, widget=forms.PasswordInput)

@@ -1,10 +1,8 @@
 from django.contrib import messages
-from django.http.response import HttpResponse, HttpResponsePermanentRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from django.contrib.auth import get_user_model
 from .models import TrainingPrograms, Schedule, Video, Trainers
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
@@ -230,6 +228,35 @@ def Subscribe(request):
 
 @login_required(login_url='LoginPage')
 def schedulePage(request):
+    current_user = User.objects.get(pk=request.user.id)
+    user_program = current_user.profile.program
+    if user_program:
+        program = TrainingPrograms.objects.get(programName=user_program)
+        schedule = program.schedule
+        print(program)
+        print(schedule)
+        print(schedule.day)
+        print(schedule.activity)
+
+        return render(request, 'Schedule.html', {'day': schedule.day, 'activity': schedule.activity})
+    else:
+        return render(request, "Profile.html", {'name': current_user})
+
+
+@login_required(login_url='LoginPage')
+def schedulePage123123(request):
+    current_user = User.objects.get(pk=request.user.id)
+    user_program = current_user.profile.program
+    if user_program:
+        program = TrainingPrograms.objects.get(programName=user_program)
+        schedules = program.relatedSchedules.all()
+        return render(request, 'Schedule.html', {'schedules': schedules})
+    else:
+        return render(request, "Profile.html", {'name': current_user})
+
+
+
+def schedulePage11(request):
     # Query the Schedule model to get all schedule entries
     schedule_entries = Schedule.objects.all()
     return render(request, "Schedule.html", {'schedule_entries': schedule_entries})
@@ -286,12 +313,3 @@ class UserEditView(generic.UpdateView):
 
     def get_object(self):
         return self.request.user
-def check_username(request):
-    username = request.POST.get('username')
-    if User.objects.filter(username=username):
-        messages.error(request, "User already exist!")
-
-    if get_user_model().objects.filter(username=username).exists():
-        return HttpResponse("This username already exists")
-    else:
-        return HttpResponse("")

@@ -1,9 +1,7 @@
 {% extends "BasePage.html" %}
 {% block content %}
 <div class="content">
-    {% for entry in schedule_entries %}
-        <p>{{ entry.day }}: {{ entry.activity }}</p>
-    {% endfor %}
+        <p>{{ day }}: {{ activity }}</p>
 </div>
 </body>
 </html>

@@ -50,8 +50,8 @@ urlpatterns = [
 ]
 
 
-hmtx_views = [
-    path("check-username/", views.check_username, name='check-username'),
-]
+#hmtx_views = [
+#    path("check-username/", views.check_username, name='check-username'),
+#]
 
-urlpatterns += hmtx_views
+#urlpatterns += hmtx_views

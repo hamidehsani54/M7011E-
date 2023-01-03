@@ -242,26 +242,6 @@ def schedulePage(request):
     else:
         return render(request, "Profile.html", {'name': current_user})
 
-
-@login_required(login_url='LoginPage')
-def schedulePage123123(request):
-    current_user = User.objects.get(pk=request.user.id)
-    user_program = current_user.profile.program
-    if user_program:
-        program = TrainingPrograms.objects.get(programName=user_program)
-        schedules = program.relatedSchedules.all()
-        return render(request, 'Schedule.html', {'schedules': schedules})
-    else:
-        return render(request, "Profile.html", {'name': current_user})
-
-
-
-def schedulePage11(request):
-    # Query the Schedule model to get all schedule entries
-    schedule_entries = Schedule.objects.all()
-    return render(request, "Schedule.html", {'schedule_entries': schedule_entries})
-
-
 def TrainerSiteSchedule(request):
     if request.method == "POST":
         programName = request.POST['programName']

@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from website import settings
 from django.views import generic
 from django.urls import reverse_lazy
-from .forms import TrainingProgramForm, SignUpForm, LoginForm
+from .forms import TrainingProgramForm, SignUpForm, LoginForm, ChangeNameForm
 from django.views.generic import FormView
 
 
@@ -98,6 +98,27 @@ def SignoutPage(request):
 
 @login_required(login_url='LoginPage')
 def Profile(request):
+    if request.method == 'POST':
+        form = ChangeNameForm(request.POST)
+        if form.is_valid():
+            usernameNew = form.cleaned_data['usernameNew']
+            usernameOld = form.cleaned_data['usernameOld']
+            password = form.cleaned_data['password']
+            if User.objects.filter(username=usernameNew):
+                messages.error(request, "User already exist!")
+                return redirect("LoginPage")
+            user = authenticate(request, username=usernameOld, password=password)
+            if user is not None:
+                login(request, user)
+                current_user = User.objects.get(username=usernameOld)
+                current_user.username = usernameNew
+                current_user.save()
+                return render(request, 'Profile.html', {'form': form})
+            else:
+                form.add_error(None, 'Invalid login')
+    else:
+        form = ChangeNameForm()
+    return render(request, 'Profile.html', {'form': form})
     current_user = User.objects.get(pk=request.user.id)
     group = Group.objects.get(name='trainer')
     usersWithGroup = User.objects.filter(groups=group)

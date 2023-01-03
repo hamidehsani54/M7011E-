@@ -1,5 +1,6 @@
 {% extends "BasePage.html" %}
 {% block content %}
+{% load widget_tweaks %}
 <div class="content">
     <h1>Welcome to your profile page, {{ name }}!</h1>
     <br>
@@ -7,8 +8,19 @@
     <a href="TrainerSite"><button type="submit">Trainer Admin Page</button></a>
     {% endif %}
     <a href="schedulePage"><button type="submit">Schedule</button></a>
-    <form action="LoginPage" method ="post">
+    <form method="post" action="Profile" style="padding-top: 100px">
         {% csrf_token %}
+        <p>Change Username</p>
+        {{ form.usernameNew.label_tag }}<br>
+        {% render_field form.usernameNew class="form-controll" hx-post="checkUser" hx-trigger="keyup" hx-target="#usernameInvalid1"%}
+        <div id='usernameInvalid1'></div>
+        {{ form.usernameOld.label_tag }}<br>
+        {% render_field form.usernameOld class="form-controll" hx-post="checkUserLog" hx-trigger="keyup" hx-target="#usernameInvalid2"%}
+        <div id='usernameInvalid2'></div>
+        {{ form.password.label_tag }}<br>
+        {{ form.password }}
+        <br>
+        <button type="submit">Change</button>
     </form>
 </div>
 </body>

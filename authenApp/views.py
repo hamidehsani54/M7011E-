@@ -11,6 +11,8 @@ from website import settings
 from django.views import generic
 from django.urls import reverse_lazy
 from .forms import TrainingProgramForm, SignUpForm, LoginForm, ChangeNameForm
+import timeit
+from django.db import connection
 
 
 def is_member_of_group(user, group_name):
@@ -235,6 +237,22 @@ def schedulePage(request):
         return render(request, "Profile.html", {'name': current_user})
 
 
+# A worse schedule page
+@login_required(login_url='LoginPage')
+def schedulePageBadVer(request):
+    current_user = User.objects.get(pk=request.user.id)
+    user_program = current_user.profile.program
+    if user_program:
+        program = TrainingPrograms.objects.get(programName=user_program)
+        schedules = []
+        for schedule in Schedule.objects.all():
+            if schedule in program.schedules.all():
+                schedules.append(schedule)
+        return render(request, 'Schedule.html', {'schedules': schedules})
+    else:
+        return render(request, "Profile.html", {'name': current_user})
+
+
 def TrainerSiteRemove(request):
     if request.method == "POST":
         programName = request.POST['programName']
@@ -345,3 +363,46 @@ class UserEditView(generic.UpdateView):
 
     def get_object(self):
         return self.request.user
+
+
+# PERFORMANCE TESTS
+# Approach 1: Get all TrainingPrograms objects, then filter
+def approach1():
+    programs = TrainingPrograms.objects.all()
+    return programs.filter(programName='scheduleTest')
+
+
+# Approach 2: Directly query TrainingPrograms objects with desired name
+def approach2():
+    return TrainingPrograms.objects.filter(programName='scheduleTest')
+
+
+# Time how long each approach takes to execute
+time1 = timeit.timeit(approach1, number=1000)
+time2 = timeit.timeit(approach2, number=1000)
+
+# Print results
+print(f'Approach 1 took {time1:.5f} seconds')
+print(f'Approach 2 took {time2:.5f} seconds')
+
+
+# ORM vs SQL
+def performanceOrmVsSql():
+    # Option 1: Using raw SQL queries
+    start_time = timeit.default_timer()
+    print(connection.cursor())
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM authenApp_Schedule")
+        rows = cursor.fetchall()
+    elapsed_time = timeit.default_timer() - start_time
+    print("Elapsed time using raw SQL:", elapsed_time)
+
+    # Option 2: Using Django ORM
+    start_time = timeit.default_timer()
+    rows = Schedule.objects.all()
+    elapsed_time = timeit.default_timer() - start_time
+    print("Elapsed time using Django ORM:", elapsed_time)
+    print("rows: ", len(rows))
+
+
+performanceOrmVsSql()

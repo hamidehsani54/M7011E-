@@ -1,5 +1,7 @@
 #username: hamid.allt2020@gmail.com
 #password: sandeep2022
+from .info import EMAIL_USE_TLS, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT
+from pathlib import Path
 
 """
 Django settings for website project.
@@ -13,18 +15,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from pathlib import Path
-from .info import *
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-EMAIL_USE_TLS= EMAIL_USE_TLS
+EMAIL_USE_TLS = EMAIL_USE_TLS
 EMAIL_HOST = EMAIL_HOST
 EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
-EMAIL_PORT= EMAIL_PORT
-EMAIL_BACKEND= EMAIL_BACKEND
+EMAIL_PORT = EMAIL_PORT
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / 'emails'
 
 
 # Quick-start development settings - unsuitable for production
@@ -73,8 +73,6 @@ ROOT_URLCONF = 'website.urls'
 LOGIN_REDIRECT_URL='login'
 LOGOUT_REDORECT_URL ='login'
 
-EMAIL_BACKEND ='django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH =BASE_DIR / 'emails'
 
 TEMPLATES = [
     {
@@ -143,7 +141,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL='/login/'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')

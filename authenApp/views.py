@@ -1,17 +1,16 @@
 from django.http.response import HttpResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from .models import TrainingPrograms, Schedule, Video, Trainers
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from website import settings
 from django.views import generic
 from django.urls import reverse_lazy
 from .forms import TrainingProgramForm, SignUpForm, LoginForm, ChangeNameForm
-from django.views.generic import FormView
 
 
 def is_member_of_group(user, group_name):
@@ -102,30 +101,27 @@ def Profile(request):
             password = form.cleaned_data['password']
             if User.objects.filter(username=usernameNew):
                 messages.error(request, "User already exist!")
-                return redirect("LoginPage")
+                return redirect("Profile")
             user = authenticate(request, username=usernameOld, password=password)
             if user is not None:
                 login(request, user)
                 current_user = User.objects.get(username=usernameOld)
                 current_user.username = usernameNew
                 current_user.save()
-                return render(request, 'Profile.html', {'form': form})
+                return redirect("Profile")
             else:
-                form.add_error(None, 'Invalid login')
+                form.add_error(None, 'Invalid new username')
     else:
         form = ChangeNameForm()
-    return render(request, 'Profile.html', {'form': form})
     current_user = User.objects.get(pk=request.user.id)
     group = Group.objects.get(name='trainer')
     usersWithGroup = User.objects.filter(groups=group)
-
     # Check if the user is in the group
     if current_user in usersWithGroup:
         # User is in the group
-        return render(request, "Profile.html", {'trainer': True, 'name': current_user.username})
+        return render(request, "Profile.html", {'trainer': True, 'name': current_user.username, 'form': form})
     else:
-        # User is not in the group
-        return render(request, "Profile.html", {'name': current_user})
+        return render(request, "Profile.html", {'trainer': False, 'name': current_user.username, 'form': form})
 
 
 def About(request):

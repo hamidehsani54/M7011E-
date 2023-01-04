@@ -28,6 +28,14 @@ class Profile(models.Model):
     program = models.CharField(max_length=100, blank=True)
 
 
+class Exercise(models.Model):
+    exerciseName = models.CharField(max_length=100)
+    exerciseType = models.CharField(max_length=100)
+    exerciseDecription = models.CharField(max_length=100, blank=True)
+    exerciseRecomendedSets = models.CharField(max_length=10)
+    exerciseRecomendedReps = models.CharField(max_length=10)
+
+
 # add video on the page
 class Video(models.Model):
     video = EmbedVideoField()  # same like models.URLField()

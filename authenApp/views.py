@@ -1,11 +1,11 @@
 from django.http.response import HttpResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from .models import TrainingPrograms, Schedule, Video, Trainers
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
+from .models import TrainingPrograms, Schedule, Video, Trainers, Exercise
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 from website import settings
 from django.views import generic
@@ -138,27 +138,32 @@ def edit_profile(request):
 
 @login_required(login_url='LoginPage')
 def Back(request):
-    return render(request, "Exercises/back.html")
+    back_exercises = Exercise.objects.filter(exerciseType='Back')
+    return render(request, "Exercises/back.html", {'exercises': back_exercises})
 
 
 @login_required(login_url='LoginPage')
 def Chest(request):
-    return render(request, "Exercises/chest.html")
+    chest_exercises = Exercise.objects.filter(exerciseType='Chest')
+    return render(request, "Exercises/chest.html", {'exercises': chest_exercises})
 
 
 @login_required(login_url='LoginPage')
 def Arms(request):
-    return render(request, "Exercises/arms.html")
+    arm_exercises = Exercise.objects.filter(exerciseType='Arms')
+    return render(request, "Exercises/arms.html", {'exercises': arm_exercises})
 
 
 @login_required(login_url='LoginPage')
 def Leg(request):
-    return render(request, "Exercises/leg.html")
+    leg_exercises = Exercise.objects.filter(exerciseType='Legs')
+    return render(request, "Exercises/leg.html", {'exercises': leg_exercises})
 
 
 @login_required(login_url='LoginPage')
 def Shoulder(request):
-    return render(request, "Exercises/shoulder.html")
+    shoulder_exercises = Exercise.objects.filter(exerciseType='Shoulders')
+    return render(request, "Exercises/shoulder.html", {'exercises': shoulder_exercises})
 
 
 @login_required(login_url='LoginPage')

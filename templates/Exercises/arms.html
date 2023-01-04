@@ -1,108 +1,23 @@
 {% extends "BasePage.html" %}
 {% block content %}
-<div class="pic">
-
-    <img src="/static/assets/img/biceps.jpg" alt="Shoulder Excercise">
-    <img src="/static/assets/img/triceps.jpg" alt="Shoulder Excercise">
-    <table id="Biceps">
+  <div class="pic">
+    <img src="/static/assets/img/biceps.jpg" alt="Bicep Exercises">
+    <img src="/static/assets/img/triceps.jpg" alt="Tricep Exercises">
+    <table id="Arms">
+      <tr>
+        <th>Exercise</th>
+        <th>Reps</th>
+        <th>Sets</th>
+      </tr>
+      {% for exercise in exercises %}
         <tr>
-          <th>Excercise</th>
-          <th>Reps</th>
-          <th>Sets</th>
+          <td>{{ exercise.exerciseName }}</td>
+          <td>{{ exercise.exerciseRecomendedReps }}</td>
+          <td>{{ exercise.exerciseRecomendedSets }}</td>
         </tr>
-        <tr>
-            <td>Concentration Curls </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Reverse Barbell Curls</td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-
-        <tr>
-            <td>Low-Pulley Curls </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Dumbbell Curls </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>High-Pulley Curls </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Preacher Curls </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Barbell Curls </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Hammer Curls </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-
+      {% endfor %}
     </table>
-    <table id="Triceps">
-        <tr>
-          <th>Excercise</th>
-          <th>Reps</th>
-          <th>sets</th>
-        </tr>
-        <tr>
-            <td>Overhead Cable </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Seated E-Z bar Extension</td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-
-        <tr>
-            <td>Push-Downs </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Tricep-Kickbacks </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Dumbell Extensions </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Reverse Push-Downs </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Tricep Dips </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Lying Bar Extension </td>
-            <td>12</td>
-            <td>3</td>
-        </tr>
-
-    </table>
+</div>
 </body>
 </html>
-
 {% endblock %}

@@ -19,7 +19,8 @@ class TrainingPrograms(models.Model):
     programDifficulty = models.CharField(max_length=2)
     programType = models.CharField(max_length=100)
     programDescription = models.CharField(max_length=100)
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
+    schedules = models.ManyToManyField(Schedule, related_name='schedules', blank=True)
+    #schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True, related_name='schedules')
     trainers = models.ManyToManyField(Trainers, related_name='training_programs', blank=True)
 
 

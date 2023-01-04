@@ -229,13 +229,8 @@ def schedulePage(request):
     user_program = current_user.profile.program
     if user_program:
         program = TrainingPrograms.objects.get(programName=user_program)
-        schedule = program.schedule
-        print(program)
-        print(schedule)
-        print(schedule.day)
-        print(schedule.activity)
-
-        return render(request, 'Schedule.html', {'day': schedule.day, 'activity': schedule.activity})
+        schedules = program.schedules.all()
+        return render(request, 'Schedule.html', {'schedules': schedules})
     else:
         return render(request, "Profile.html", {'name': current_user})
 
@@ -258,7 +253,7 @@ def TrainerSiteSchedule(request):
         program = TrainingPrograms.objects.get(programName=programName)
         schedule = Schedule(day=day, activity=activity)
         schedule.save()
-        program.schedule = schedule
+        program.schedules.add(schedule)
         program.save()
 
     entries = TrainingPrograms.objects.all()
@@ -279,8 +274,8 @@ def TrainerSite(request):
             program = TrainingPrograms(programName=program_name,
                                        programDifficulty=program_difficulty,
                                        programType=program_type,
-                                       programDescription=program_description,
-                                       schedule=None)
+                                       programDescription=program_description
+                                       )
             # Save the TrainingPrograms instance to the database
             program.save()
             # Add the many-to-many

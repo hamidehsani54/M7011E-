@@ -1,7 +1,10 @@
 {% extends "BasePage.html" %}
 {% block content %}
 <div class="content">
-        <p>{{ day }}: {{ activity }}</p>
+    <h1>test</h1>
+    {% for schedule in schedules %}
+      <p>{{ schedule.day }}: {{ schedule.activity }}</p>
+    {% endfor %}
 </div>
 </body>
 </html>

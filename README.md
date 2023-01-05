@@ -1,21 +1,21 @@
 #Your Personal Trainer
 
 ## Get Django Ready
-Install and set up virt. env. with django.
-<a href="https://realpython.com/django-setup/">HOW TO INSTALL AND SET UP DJANGO</a>
+Install and set up virt. env. with django.<br>
+<a href="https://realpython.com/django-setup/">HOW TO INSTALL AND SET UP DJANGO</a><br><br>
 
-start the server by typing:
-  python manage.py runserver <specify_port>
-from the project dir
-To use the admin pages you need to create a super-user, do this by running this command
-  python manage.py createsuperuser
+start the server by typing:<br>
+  python manage.py runserver <specify_port><br>
+from the project dir<br>
+To use the admin pages you need to create a super-user, do this by running this command<br>
+  python manage.py createsuperuser<br><br>
 
-You might have to run these commands to init all the db files (you probobly dont have to do this)
-  python manage.py makemigrations
-  python manage.py migrate
-  
-Then you should be able to access the site on
-  http://127.0.0.1:<your_selected_port>/
+You might have to run these commands to init all the db files (you probobly dont have to do this)<br>
+  python manage.py makemigrations<br>
+  python manage.py migrate<br><br>
+
+Then you should be able to access the site on<br>
+  http://127.0.0.1:<your_selected_port>/<br><br>
   
 
 ## Required Packages
@@ -32,7 +32,7 @@ Then you should be able to access the site on
  
 <h4>Install easely with "pip install <PackageName>"</h4>
 
-## Grade 3 requrements
+## Grade 3 requrements (our target)
 
 <h1>Front end</h1>
 <li>At least 5 pages that are "responsive in design"</li>

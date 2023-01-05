@@ -6,3 +6,5 @@ embeded video: pip install django-embed-video
 
 hmtx: python -m pip install django-htmx
 
+django-widget-tweaks: pip install django-widget-tweaks
+
